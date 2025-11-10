@@ -29,7 +29,7 @@ export function QuizResultPage() {
   const loadQuizData = async () => {
     try {
       const { data, error } = await supabase
-        .from('quiz_responses')
+        .from('quiz_results')
         .select('*')
         .eq('id', id)
         .single();
