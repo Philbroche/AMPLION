@@ -90,7 +90,7 @@ export function QuizModal({ isOpen, onClose }: QuizModalProps) {
     setIsSubmitting(true);
     try {
       const { data: quizData, error } = await supabase
-        .from('quiz_responses')
+        .from('quiz_results')
         .insert({
           email: data.email,
           business_type: data.business_type,
