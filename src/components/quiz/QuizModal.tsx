@@ -77,6 +77,66 @@ const questions = [
   },
 ];
 
+// Function to calculate recommendation based on budget and company size
+function calculateRecommendation(data: QuizFormData): { 
+  recommendation: string; 
+  recommendationText: string;
+  score: number;
+} {
+  let score = 0;
+  let recommendation = 'automation-essentials';
+  let recommendationText = '';
+
+  // Score based on budget
+  const budgetScores: Record<string, number> = {
+    'Under $1k': 1,
+    '$1k-$3k': 2,
+    '$3k-$5k': 3,
+    '$5k-$10k': 4,
+    '$10k+': 5,
+    'Custom': 5,
+  };
+  score += budgetScores[data.budget_range] || 1;
+
+  // Score based on company size
+  const sizeScores: Record<string, number> = {
+    '1-5': 1,
+    '6-20': 2,
+    '21-50': 3,
+    '51+': 4,
+  };
+  score += sizeScores[data.company_size] || 1;
+
+  // Score based on timeline urgency
+  const timelineScores: Record<string, number> = {
+    'Urgent - within 1 month': 3,
+    '1-3 months': 2,
+    '3-6 months': 1,
+    'Exploring options': 0,
+  };
+  score += timelineScores[data.timeline] || 0;
+
+  // Determine recommendation based on total score
+  if (score <= 3) {
+    recommendation = 'ai-creative-starter';
+    recommendationText = 'Based on your responses, our AI Creative Starter package is perfect for you. This solution provides essential AI-powered creative tools to help automate your content and design needs without overwhelming complexity.';
+  } else if (score <= 5) {
+    recommendation = 'automation-essentials';
+    recommendationText = 'Your business is ready for our Automation Essentials package. This comprehensive solution will streamline your operations with powerful workflow automation, perfect for your current scale and budget.';
+  } else if (score <= 7) {
+    recommendation = 'automation-power';
+    recommendationText = 'Based on your needs and scale, our Automation Power Pack is ideal. This advanced solution combines sophisticated automation workflows with AI capabilities to transform your business operations.';
+  } else if (score <= 9) {
+    recommendation = 'managed-growth';
+    recommendationText = 'Your business requires our Managed Growth Package. This premium solution provides dedicated support and custom automation strategies to accelerate your growth trajectory.';
+  } else {
+    recommendation = 'enterprise-amplification';
+    recommendationText = 'Your organization needs our Enterprise Amplification solution. This comprehensive package delivers enterprise-grade automation, AI integration, and dedicated strategic consulting to transform your operations at scale.';
+  }
+
+  return { recommendation, recommendationText, score };
+}
+
 export function QuizModal({ isOpen, onClose }: QuizModalProps) {
   const [currentStep, setCurrentStep] = useState(0);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -89,24 +149,61 @@ export function QuizModal({ isOpen, onClose }: QuizModalProps) {
   const onSubmit = async (data: QuizFormData) => {
     setIsSubmitting(true);
     try {
-      const { data: quizData, error } = await supabase
-        .from('quiz_results')
-        .insert({
+      // Calculate recommendation
+      const { recommendation, recommendationText, score } = calculateRecommendation(data);
+
+      // First, check if subscriber exists or create new one
+      const { data: subscriberData, error: subscriberError } = await supabase
+        .from('subscribers')
+        .upsert({
           email: data.email,
-          business_type: data.business_type,
-          current_challenges: data.current_challenges,
-          automation_goals: data.automation_goals,
-          company_size: data.company_size,
-          current_tools: data.current_tools,
-          budget_range: data.budget_range,
-          timeline: data.timeline,
-          additional_notes: data.additional_notes,
+          source: 'quiz',
+          status: 'active'
+        }, {
+          onConflict: 'email'
         })
         .select()
         .single();
 
-      if (error) throw error;
+      if (subscriberError) {
+        console.error('Subscriber error:', subscriberError);
+        // Continue even if subscriber creation fails - quiz can still be saved
+      }
 
+      // Prepare quiz answers in the correct format
+      const quizAnswers = {
+        business_type: data.business_type,
+        current_challenges: data.current_challenges,
+        automation_goals: data.automation_goals,
+        company_size: data.company_size,
+        current_tools: data.current_tools,
+        budget_range: data.budget_range,
+        timeline: data.timeline
+      };
+
+      // Insert quiz results with correct schema
+      const { data: quizData, error: quizError } = await supabase
+        .from('quiz_results')
+        .insert({
+          email: data.email,
+          subscriber_id: subscriberData?.id || null,
+          answers: quizAnswers, // Store all answers as JSON
+          recommendation: recommendation,
+          recommendation_text: recommendationText,
+          score: score,
+          quiz_version: 'v1',
+          additional_notes: data.additional_notes || null,
+          completed_at: new Date().toISOString()
+        })
+        .select()
+        .single();
+
+      if (quizError) {
+        console.error('Quiz submission error:', quizError);
+        throw quizError;
+      }
+
+      // Track successful completion
       await trackEvent({
         event_name: 'quiz_completed',
         event_category: 'conversion',
@@ -115,14 +212,34 @@ export function QuizModal({ isOpen, onClose }: QuizModalProps) {
           business_type: data.business_type,
           budget_range: data.budget_range,
           timeline: data.timeline,
+          recommendation: recommendation,
+          score: score
         },
       });
 
       toast.success('Thank you! Redirecting to your personalized roadmap...');
       onClose();
-      navigate(`/quiz-result/${quizData.id}`);
+      
+      // Navigate to results page
+      if (quizData?.id) {
+        navigate(`/quiz-result/${quizData.id}`);
+      } else {
+        // Fallback to home with success message
+        navigate('/?quiz=completed');
+      }
     } catch (error) {
       console.error('Quiz submission error:', error);
+      
+      // Log error for debugging
+      await trackEvent({
+        event_name: 'quiz_submission_error',
+        event_category: 'error',
+        event_data: {
+          error: error instanceof Error ? error.message : 'Unknown error',
+          step: currentStep + 1
+        },
+      });
+      
       toast.error('Failed to submit quiz. Please try again.');
     } finally {
       setIsSubmitting(false);
@@ -221,7 +338,7 @@ export function QuizModal({ isOpen, onClose }: QuizModalProps) {
                   {questions[currentStep].type === 'textarea' && (
                     <textarea
                       {...register(questions[currentStep].id as keyof QuizFormData, {
-                        required: 'This field is required',
+                        required: questions[currentStep].id !== 'additional_notes' ? 'This field is required' : false,
                       })}
                       placeholder={questions[currentStep].placeholder}
                       rows={4}
