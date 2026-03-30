@@ -1,47 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { Linkedin, Twitter, Youtube, Mail } from 'lucide-react';
-import { Button } from '../ui/Button';
-import { supabase } from '../../lib/supabase';
-import toast from 'react-hot-toast';
-import { trackEvent } from '../../lib/analytics';
 
 export function Footer() {
-  const [email, setEmail] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
-
-  const handleNewsletterSignup = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!email) return;
-
-    setIsLoading(true);
-    try {
-      const { error } = await supabase.from('subscribers').insert({
-        email,
-        status: 'pending',
-      });
-
-      if (error) throw error;
-
-      await trackEvent({
-        event_name: 'newsletter_signup',
-        event_category: 'conversion',
-        user_email: email,
-      });
-
-      toast.success('Thanks for subscribing! Check your email for confirmation.');
-      setEmail('');
-    } catch (error: any) {
-      if (error.code === '23505') {
-        toast.error('This email is already subscribed!');
-      } else {
-        toast.error('Failed to subscribe. Please try again.');
-      }
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
   return (
     <footer className="bg-navy text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -88,9 +49,14 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <Link to="/#contact" className="text-gray-300 hover:text-cyan transition-colors">
+                <button
+                  onClick={() => (window as any).Calendly.initPopupWidget({
+                    url: 'https://calendly.com/philb-prog17/demo-call'
+                  })}
+                  className="text-gray-300 hover:text-cyan transition-colors text-sm text-left"
+                >
                   Contact
-                </Link>
+                </button>
               </li>
               <li>
                 <a href="#" className="text-gray-300 hover:text-cyan transition-colors">
@@ -106,54 +72,61 @@ export function Footer() {
           </div>
 
           <div>
-            <h3 className="text-cyan font-semibold mb-4">Newsletter</h3>
-            <p className="text-gray-300 text-sm mb-4">
-              Get weekly automation tips and insights
+            <h3 className="text-cyan font-semibold mb-4">Get In Touch</h3>
+            <p className="text-gray-300 text-sm mb-3">
+              Ready to talk? Book a free 15-minute strategy call or reach out directly.
             </p>
-            <form onSubmit={handleNewsletterSignup} className="space-y-2">
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="Your email"
-                className="w-full px-4 py-2 rounded-lg bg-deepBg border border-cyan/30 focus:border-cyan focus:outline-none text-white"
-                required
-              />
-              <Button type="submit" size="sm" isLoading={isLoading} className="w-full">
-                Subscribe
-              </Button>
-            </form>
+            <button
+              onClick={() => (window as any).Calendly.initPopupWidget({
+                url: 'https://calendly.com/philb-prog17/demo-call'
+              })}
+              className="inline-block mb-3 text-cyan hover:underline text-sm font-medium text-left"
+            >
+              Book a Free Strategy Call →
+            </button>
+            <br />
+            <a
+              href="mailto:Pbrochu@amplion.dev"
+              className="text-gray-300 hover:text-cyan transition-colors text-sm"
+            >
+              Pbrochu@amplion.dev
+            </a>
           </div>
         </div>
 
         <div className="border-t border-cyan/20 pt-8 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-gray-400 text-sm mb-4 md:mb-0">
-            © 2024 <span className="text-orange">Amplion</span>. All rights reserved.
-          </p>
+          <div>
+            <p className="text-gray-400 text-xs text-center mb-4">
+              AMPLION · amplion.dev · Serving businesses across North America
+            </p>
+            <p className="text-gray-400 text-sm mb-4 md:mb-0">
+              © 2026 <span className="text-orange">Amplion</span>. All rights reserved.
+            </p>
+          </div>
           <div className="flex gap-4">
             <a
-              href="#"
+              href="https://amplion.dev"
               className="text-gray-400 hover:text-cyan transition-colors"
               aria-label="LinkedIn"
             >
               <Linkedin className="h-5 w-5" />
             </a>
             <a
-              href="#"
+              href="https://amplion.dev"
               className="text-gray-400 hover:text-cyan transition-colors"
               aria-label="Twitter"
             >
               <Twitter className="h-5 w-5" />
             </a>
             <a
-              href="#"
+              href="https://amplion.dev"
               className="text-gray-400 hover:text-cyan transition-colors"
               aria-label="YouTube"
             >
               <Youtube className="h-5 w-5" />
             </a>
             <a
-              href="mailto:contact@amplion.ai"
+              href="mailto:Pbrochu@amplion.dev"
               className="text-gray-400 hover:text-cyan transition-colors"
               aria-label="Email"
             >

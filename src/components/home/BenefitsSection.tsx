@@ -75,31 +75,6 @@ export function BenefitsSection() {
           ))}
         </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.6 }}
-          className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8 text-center"
-        >
-          {[
-            { value: '150+', label: 'Projects Completed' },
-            { value: '10K+', label: 'Hours Saved' },
-            { value: '300%', label: 'Avg ROI Increase' },
-            { value: '98%', label: 'Client Satisfaction' },
-          ].map((stat, index) => (
-            <motion.div
-              key={stat.label}
-              initial={{ opacity: 0, scale: 0.5 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.7 + index * 0.1 }}
-            >
-              <div className="text-4xl md:text-5xl font-bold text-cyan mb-2">{stat.value}</div>
-              <div className="text-gray-400">{stat.label}</div>
-            </motion.div>
-          ))}
-        </motion.div>
       </div>
     </section>
   );

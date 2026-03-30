@@ -41,10 +41,10 @@ export function ServicesSection() {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold text-navy mb-4 font-heading">
-            Our <span className="text-orange">Services</span>
+            What We <span className="text-orange">Build</span>
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Comprehensive AI automation solutions designed to amplify your business operations
+            Four core capabilities — deployed individually or as a full-stack growth system.
           </p>
         </motion.div>
 

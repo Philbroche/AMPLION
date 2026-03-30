@@ -1,11 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, Zap } from 'lucide-react';
-import { Button } from '../ui/Button';
-import { Link } from 'react-router-dom';
-import { trackClick } from '../../lib/analytics';
+import { Zap } from 'lucide-react';
 
-export function HeroSection({ onOpenQuiz }: { onOpenQuiz: () => void }) {
+export function HeroSection() {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-deepBg">
       <div className="absolute inset-0 bg-gradient-to-br from-cyan/10 via-transparent to-orange/10 animate-pulse" />
@@ -51,7 +48,7 @@ export function HeroSection({ onOpenQuiz }: { onOpenQuiz: () => void }) {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="text-xl sm:text-2xl md:text-3xl text-gray-300 mb-8 max-w-4xl mx-auto"
           >
-            Amplifying Business Intelligence Through AI Automation
+            Websites. Automation. Growth.
           </motion.p>
 
           <motion.div
@@ -69,45 +66,25 @@ export function HeroSection({ onOpenQuiz }: { onOpenQuiz: () => void }) {
                 </div>
 
                 <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4">
-                  Transform Your Business with AI Automation
+                  Websites and AI Automation That Turn Your Business Into a Revenue Machine
                 </h2>
 
                 <p className="text-lg sm:text-xl text-gray-300 mb-8 max-w-3xl mx-auto">
-                  Discover how we can amplify your operations, boost efficiency, and drive growth through intelligent automation solutions tailored to your business needs.
+                  We build high-converting websites and automate the workflows eating your time every day. The average business loses 15–20 hours per week to manual tasks that shouldn't exist. We eliminate them. More time, lower overhead, more revenue — book a free 15-minute call to see what we'd build for you.
                 </p>
 
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <Button
-                    size="lg"
-                    onClick={() => {
-                      trackClick('hero_cta_primary', 'button');
-                      onOpenQuiz();
-                    }}
-                    className="animate-pulse-glow"
+                  <button
+                    onClick={() => (window as any).Calendly.initPopupWidget({
+                      url: 'https://calendly.com/philb-prog17/demo-call'
+                    })}
+                    className="font-medium rounded-lg transition-all duration-300 inline-flex items-center justify-center gap-2 bg-orange text-white hover:shadow-orange-glow hover:scale-105 disabled:opacity-50 disabled:hover:scale-100 px-8 py-4 text-lg animate-pulse-glow"
                   >
-                    Request a Call to Know How We Can Amplify Your Business Our Way
-                    <ArrowRight className="h-5 w-5" />
-                  </Button>
+                    Book a Free Strategy Call →
+                  </button>
                 </div>
               </div>
             </div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 0.8 }}
-            className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center"
-          >
-            <Link to="/portfolio">
-              <Button
-                variant="outline"
-                size="lg"
-                onClick={() => trackClick('hero_cta_secondary', 'button')}
-              >
-                Explore Our Solutions
-              </Button>
-            </Link>
           </motion.div>
         </motion.div>
 
