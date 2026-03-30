@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, ShoppingCart } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useCart } from '../../context/CartContext';
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { itemCount } = useCart();
   const location = useLocation();
 
   useEffect(() => {
@@ -24,6 +26,7 @@ export function Header() {
     { name: 'Home', path: '/' },
     { name: 'Services', path: '/#services' },
     { name: 'Portfolio', path: '/portfolio' },
+    { name: 'Contact', path: '/#contact' },
   ];
 
   return (
@@ -53,18 +56,25 @@ export function Header() {
                 <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-cyan transition-all duration-300 group-hover:w-full" />
               </Link>
             ))}
-            <button
-              onClick={() => (window as any).Calendly.initPopupWidget({
-                url: 'https://calendly.com/philb-prog17/demo-call'
-              })}
-              className="text-white hover:text-cyan transition-colors duration-300 font-medium relative group"
-            >
-              Contact
-              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-cyan transition-all duration-300 group-hover:w-full" />
-            </button>
           </nav>
 
           <div className="flex items-center gap-4">
+            <Link
+              to="/cart"
+              className="relative p-2 text-white hover:text-cyan transition-colors"
+            >
+              <ShoppingCart className="h-6 w-6" />
+              {itemCount > 0 && (
+                <motion.span
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  className="absolute -top-1 -right-1 bg-orange text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center"
+                >
+                  {itemCount}
+                </motion.span>
+              )}
+            </Link>
+
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className="md:hidden text-white p-2"
@@ -93,14 +103,6 @@ export function Header() {
                   {link.name}
                 </Link>
               ))}
-              <button
-                onClick={() => (window as any).Calendly.initPopupWidget({
-                  url: 'https://calendly.com/philb-prog17/demo-call'
-                })}
-                className="block text-white hover:text-cyan transition-colors duration-300 font-medium py-2"
-              >
-                Contact
-              </button>
             </nav>
           </motion.div>
         )}
