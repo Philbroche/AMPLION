@@ -1,129 +1,156 @@
-import React from 'react';
+import { useRef } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, Zap } from 'lucide-react';
+import { Zap } from 'lucide-react';
 import { Button } from '../ui/Button';
-import { Link } from 'react-router-dom';
+import { HeroDashboard } from '../HeroDashboard';
 import { trackClick } from '../../lib/analytics';
+import { useBooking } from '../../context/BookingContext';
 
-export function HeroSection({ onOpenQuiz }: { onOpenQuiz: () => void }) {
+export function HeroSection() {
+  const { openModal } = useBooking();
+  const sectionRef = useRef<HTMLElement>(null);
+  const badgeRef   = useRef<HTMLDivElement>(null);
+
+  const handleProgress = (p: number) => {
+    const el = badgeRef.current;
+    if (!el) return;
+    if (p >= 0.6) {
+      el.style.color           = '#00e676';
+      el.style.borderColor     = 'rgba(0,230,118,0.35)';
+      el.style.backgroundColor = 'rgba(0,230,118,0.10)';
+    } else {
+      el.style.color           = '#ff3347';
+      el.style.borderColor     = 'rgba(255,51,71,0.35)';
+      el.style.backgroundColor = 'rgba(255,51,71,0.10)';
+    }
+  };
+
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-deepBg">
-      <div className="absolute inset-0 bg-gradient-to-br from-cyan/10 via-transparent to-orange/10 animate-pulse" />
+    <section ref={sectionRef} className="relative min-h-screen overflow-hidden bg-[#080812]">
 
-      <div className="absolute inset-0 opacity-20">
-        <div className="absolute top-20 left-10 w-72 h-72 bg-cyan rounded-full blur-[100px] animate-pulse" />
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-orange rounded-full blur-[120px] animate-pulse" style={{ animationDelay: '1s' }} />
+      {/*
+        Scoped overrides — stretches the dashboard edge-to-edge as a full background
+        and scales up the card content for cinematic impact.
+      */}
+      <style>{`
+        .amp-hero-bg,
+        .amp-hero-bg .amp-dashboard {
+          width: 100%;
+          height: 100%;
+          border-radius: 0 !important;
+          border: none !important;
+          box-shadow: none !important;
+        }
+        .amp-hero-bg .amp-dashboard {
+          display: flex;
+          flex-direction: column;
+          padding: 96px 32px 32px;
+        }
+        .amp-hero-bg .amp-grid {
+          flex: 1;
+          grid-template-rows: repeat(2, 1fr);
+          align-items: stretch;
+          gap: 16px;
+        }
+        .amp-hero-bg .amp-card {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          padding: 28px 32px;
+          border: 1px solid rgba(255,51,71,0.75);
+          box-shadow: 0 0 30px rgba(255,51,71,0.45), inset 0 0 30px rgba(255,51,71,0.10);
+        }
+        .amp-hero-bg .amp-tier {
+          display: none;
+        }
+        .amp-hero-bg .amp-label {
+          font-size: 26px;
+          margin-bottom: 16px;
+          color: rgba(255,255,255,0.85);
+        }
+        .amp-hero-bg .amp-value {
+          font-size: clamp(28px, 3.8vw, 52px);
+        }
+        .amp-hero-bg .amp-header {
+          margin-bottom: 24px;
+        }
+        .amp-hero-bg .amp-header-label {
+          font-size: 18px;
+          letter-spacing: 0.18em;
+        }
+      `}</style>
+
+      {/* Layer 0 — dashboard as full-bleed background (hidden on mobile) */}
+      <div className="amp-hero-bg absolute inset-0 z-0 hidden sm:block">
+        <HeroDashboard pinRef={sectionRef} onProgress={handleProgress} />
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 text-center">
+      {/* Layer 1 — fully transparent at top/bottom edges so card frames show, heavier at text centre */}
+      <div
+        className="absolute inset-0 z-[1] hidden sm:block"
+        style={{
+          background: 'linear-gradient(to bottom, rgba(8,8,18,0) 0%, rgba(8,8,18,0) 12%, rgba(8,8,18,0.68) 38%, rgba(8,8,18,0.72) 50%, rgba(8,8,18,0.68) 62%, rgba(8,8,18,0) 88%, rgba(8,8,18,0) 100%)',
+        }}
+      />
+      <div
+        className="absolute inset-0 z-[1] sm:hidden"
+        style={{
+          background: 'rgba(8,8,18,0.88)',
+        }}
+      />
+
+      {/* Layer 2 — badge, headline, subheadline, CTA */}
+      <div className="relative z-[2] min-h-screen flex flex-col items-center justify-center text-center w-full px-4 sm:px-6 lg:px-8 py-24">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
+          className="w-full max-w-5xl mx-auto"
         >
           <motion.div
-            initial={{ scale: 0.8, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="mb-8 inline-block"
-          >
-            <img
-              src="/Sleek Circular Design for AMPLION (2).png"
-              alt="Amplion"
-              className="h-32 w-32 sm:h-48 sm:w-48 lg:h-56 lg:w-56 mx-auto drop-shadow-[0_0_30px_rgba(0,229,255,0.5)]"
-            />
-          </motion.div>
-
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="text-4xl sm:text-5xl md:text-7xl font-bold text-white mb-6 font-heading"
-          >
-            <span className="bg-gradient-to-r from-cyan via-yellow to-orange bg-clip-text text-transparent">
-              AMPLION
-            </span>
-          </motion.h1>
-
-          <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-xl sm:text-2xl md:text-3xl text-gray-300 mb-8 max-w-4xl mx-auto"
+            className="flex justify-center mb-6"
           >
-            Amplifying Business Intelligence Through AI Automation
-          </motion.p>
+            <div
+              ref={badgeRef}
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full border text-sm font-semibold tracking-wide"
+              style={{ color: '#ff3347', borderColor: 'rgba(255,51,71,0.35)', backgroundColor: 'rgba(255,51,71,0.10)' }}
+            >
+              <Zap className="h-4 w-4" aria-hidden="true" />
+              <span>AI Automation for Growing Businesses</span>
+            </div>
+          </motion.div>
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.5 }}
-            className="relative mb-12 max-w-5xl mx-auto"
           >
-            <div className="relative bg-gradient-to-br from-navy to-deepBg rounded-2xl p-8 sm:p-12 border-2 border-cyan/30 shadow-[0_0_50px_rgba(0,229,255,0.2)]">
-              <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-cyan/5 to-orange/5 rounded-2xl" />
+            <h2 className="text-5xl sm:text-6xl md:text-7xl font-bold text-white mb-4 drop-shadow-[0_0_30px_rgba(0,229,255,0.25)]">
+              Less Manual Work. More Time. More Money.
+            </h2>
+            <p className="text-lg sm:text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
+              We design and build custom AI automation systems that eliminate bottlenecks, cut operational costs, and free your team to focus on what actually grows the business. Book a free call — we'll map out exactly what we'd build.
+            </p>
 
-              <div className="relative z-10">
-                <div className="flex items-center justify-center mb-6">
-                  <Zap className="h-12 w-12 text-yellow animate-pulse" />
-                </div>
-
-                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4">
-                  Transform Your Business with AI Automation
-                </h2>
-
-                <p className="text-lg sm:text-xl text-gray-300 mb-8 max-w-3xl mx-auto">
-                  Discover how we can amplify your operations, boost efficiency, and drive growth through intelligent automation solutions tailored to your business needs.
-                </p>
-
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <Button
-                    size="lg"
-                    onClick={() => {
-                      trackClick('hero_cta_primary', 'button');
-                      onOpenQuiz();
-                    }}
-                    className="animate-pulse-glow"
-                  >
-                    Request a Call to Know How We Can Amplify Your Business Our Way
-                    <ArrowRight className="h-5 w-5" />
-                  </Button>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 0.8 }}
-            className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center"
-          >
-            <Link to="/portfolio">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button
-                variant="outline"
                 size="lg"
-                onClick={() => trackClick('hero_cta_secondary', 'button')}
+                onClick={() => {
+                  trackClick('hero_cta_primary', 'button');
+                  openModal();
+                }}
+                className="motion-safe:animate-pulse-glow w-full sm:w-auto"
               >
-                Explore Our Solutions
+                Get Your Free Automation Audit →
               </Button>
-            </Link>
-          </motion.div>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 1 }}
-          className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
-        >
-          <div className="animate-bounce">
-            <div className="w-6 h-10 border-2 border-cyan rounded-full flex justify-center pt-2">
-              <div className="w-1 h-3 bg-cyan rounded-full" />
             </div>
-          </div>
+          </motion.div>
         </motion.div>
       </div>
+
     </section>
   );
 }

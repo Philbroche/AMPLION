@@ -2,16 +2,15 @@ import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Toaster } from 'react-hot-toast';
-import { CartProvider } from './context/CartContext';
-import { AnnouncementBanner } from './components/layout/AnnouncementBanner';
+import { BookingProvider } from './context/BookingContext';
+import { useBooking } from './context/BookingContext';
+import { PreBookingModal } from './components/PreBookingModal';
 import { Header } from './components/layout/Header';
 import { Footer } from './components/layout/Footer';
 import { HomePage } from './pages/HomePage';
-import { PortfolioPage } from './pages/PortfolioPage';
-import { CartPage } from './pages/CartPage';
-import { CheckoutPage } from './pages/CheckoutPage';
-import { QuizResultPage } from './pages/QuizResultPage';
-import { OrderSuccessPage } from './pages/OrderSuccessPage';
+import { PrivacyPolicyPage } from './pages/PrivacyPolicyPage';
+import { TermsOfServicePage } from './pages/TermsOfServicePage';
+import { NotFoundPage } from './pages/NotFoundPage';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -22,51 +21,58 @@ const queryClient = new QueryClient({
   },
 });
 
+function AppContent() {
+  const { isOpen, closeModal } = useBooking();
+  return (
+    <>
+      <div className="min-h-screen flex flex-col">
+        <Header />
+        <main className="flex-1">
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
+            <Route path="/terms" element={<TermsOfServicePage />} />
+            <Route path="*" element={<NotFoundPage />} />
+          </Routes>
+        </main>
+        <Footer />
+      </div>
+      <Toaster
+        position="top-right"
+        toastOptions={{
+          duration: 3000,
+          style: {
+            background: '#1A2F3D',
+            color: '#fff',
+            border: '1px solid #00E5FF',
+          },
+          success: {
+            iconTheme: {
+              primary: '#00E5FF',
+              secondary: '#fff',
+            },
+          },
+          error: {
+            iconTheme: {
+              primary: '#FF6B35',
+              secondary: '#fff',
+            },
+          },
+        }}
+      />
+      <PreBookingModal isOpen={isOpen} onClose={closeModal} />
+    </>
+  );
+}
+
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <CartProvider>
+      <BookingProvider>
         <BrowserRouter>
-          <div className="min-h-screen flex flex-col">
-            <Header />
-            <AnnouncementBanner />
-            <main className="flex-1">
-              <Routes>
-                <Route path="/" element={<HomePage />} />
-                <Route path="/portfolio" element={<PortfolioPage />} />
-                <Route path="/cart" element={<CartPage />} />
-                <Route path="/checkout" element={<CheckoutPage />} />
-                <Route path="/quiz-result/:id" element={<QuizResultPage />} />
-                <Route path="/order-success/:id" element={<OrderSuccessPage />} />
-              </Routes>
-            </main>
-            <Footer />
-          </div>
-          <Toaster
-            position="top-right"
-            toastOptions={{
-              duration: 3000,
-              style: {
-                background: '#1A2F3D',
-                color: '#fff',
-                border: '1px solid #00E5FF',
-              },
-              success: {
-                iconTheme: {
-                  primary: '#00E5FF',
-                  secondary: '#fff',
-                },
-              },
-              error: {
-                iconTheme: {
-                  primary: '#FF6B35',
-                  secondary: '#fff',
-                },
-              },
-            }}
-          />
+          <AppContent />
         </BrowserRouter>
-      </CartProvider>
+      </BookingProvider>
     </QueryClientProvider>
   );
 }

@@ -21,3 +21,15 @@ dist-ssr
 *.sln
 *.sw?
 .env
+.env.local
+.env.*.local
+.mcp.json
+tools and skills/.mcp.json
+
+# Local dev artifacts
+.claude/
+.playwright-mcp/
+creating-skills-SKILL.md
+*.check.png
+privacy-policy-check.png
+terms-check.png
