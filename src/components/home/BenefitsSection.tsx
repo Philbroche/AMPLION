@@ -47,7 +47,7 @@ export function BenefitsSection() {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 font-heading">
-            Why Choose <span className="text-cyan">Amplion</span>
+            Why Choose <span className="text-orange">Amplion</span>
           </h2>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
             Transform your business operations with measurable results
@@ -63,43 +63,17 @@ export function BenefitsSection() {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               whileHover={{ y: -8, transition: { duration: 0.3 } }}
-              className="bg-navy/50 backdrop-blur-sm rounded-xl p-6 border border-cyan/20 hover:border-orange hover:shadow-orange-glow transition-all duration-300"
+              className="bg-gradient-to-br from-navy to-deepBg border border-cyan/20 rounded-xl p-6 hover:border-orange hover:shadow-orange-glow transition-all duration-300"
             >
               <div className="bg-gradient-to-br from-cyan to-orange rounded-lg w-14 h-14 flex items-center justify-center mb-4">
                 <benefit.icon className="h-7 w-7 text-white" />
               </div>
 
               <h3 className="text-xl font-bold text-white mb-2">{benefit.title}</h3>
-              <p className="text-gray-400">{benefit.description}</p>
+              <p className="text-gray-300">{benefit.description}</p>
             </motion.div>
           ))}
         </div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.6 }}
-          className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8 text-center"
-        >
-          {[
-            { value: '150+', label: 'Projects Completed' },
-            { value: '10K+', label: 'Hours Saved' },
-            { value: '300%', label: 'Avg ROI Increase' },
-            { value: '98%', label: 'Client Satisfaction' },
-          ].map((stat, index) => (
-            <motion.div
-              key={stat.label}
-              initial={{ opacity: 0, scale: 0.5 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.7 + index * 0.1 }}
-            >
-              <div className="text-4xl md:text-5xl font-bold text-cyan mb-2">{stat.value}</div>
-              <div className="text-gray-400">{stat.label}</div>
-            </motion.div>
-          ))}
-        </motion.div>
       </div>
     </section>
   );

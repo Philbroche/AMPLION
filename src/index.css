@@ -1,3 +1,40 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+[id] {
+  scroll-margin-top: 90px;
+}
+
+/* Global touch interaction: remove 300ms tap delay */
+button,
+a,
+[role="button"] {
+  touch-action: manipulation;
+  cursor: pointer;
+}
+
+/* Keyboard focus visibility — visible ring on all interactive elements */
+:focus-visible {
+  outline: 2px solid #00E5FF;
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Respect prefers-reduced-motion — disable decorative animations */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}
