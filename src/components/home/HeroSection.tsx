@@ -129,10 +129,10 @@ export function HeroSection() {
             transition={{ duration: 0.8, delay: 0.5 }}
           >
             <h2 className="text-5xl sm:text-6xl md:text-7xl font-bold text-white mb-4 drop-shadow-[0_0_30px_rgba(0,229,255,0.25)]">
-              Less Manual Work. More Time. More Money.
+              Less Manual Work. More Free Time. More Growth.
             </h2>
             <p className="text-lg sm:text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
-              We design and build custom AI automation systems that eliminate bottlenecks, cut operational costs, and free your team to focus on what actually grows the business. Book a free call — we'll map out exactly what we'd build.
+              We design and build custom AI automation systems that eliminate bottlenecks, cut operational costs, and free your team to focus on what actually grows the business.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
