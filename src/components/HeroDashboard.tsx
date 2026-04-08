@@ -21,62 +21,51 @@
 import { useEffect, useRef, RefObject } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { Language, translations } from '../translations';
 
 gsap.registerPlugin(ScrollTrigger);
 
-// ─── KPI data ────────────────────────────────────────────────────────────────
-// bRaw = before value, aRaw = after value, fmt = display formatter
-const KPIS = [
-  {
-    label: 'Lead Conversion Rate',
-    tier:  'T1 — Website',
-    bRaw:  0.8,
-    aRaw:  4.2,
-    fmt:   (v: number) => v.toFixed(1) + '%',
-  },
-  {
-    label: 'Leads Per Month',
-    tier:  'T1 — Website',
-    bRaw:  14,
-    aRaw:  97,
-    fmt:   (v: number) => Math.round(v).toString(),
-  },
-  {
-    label: 'Lead Response Time',
-    tier:  'T2 — Automation',
-    bRaw:  252,
-    aRaw:  4,
-    fmt:   (v: number) => v >= 60 ? (v / 60).toFixed(1) + ' hrs' : Math.round(v) + ' min',
-  },
-  {
-    label: 'Hours Saved Per Week',
-    tier:  'T2 — Automation',
-    bRaw:  2,
-    aRaw:  23,
-    fmt:   (v: number) => Math.round(v) + ' hrs',
-  },
-  {
-    label: 'Posts Publishing Speed',
-    tier:  'T3 — AI Creative',
-    bRaw:  144,
-    aRaw:  3,
-    fmt:   (v: number) => v >= 24 ? Math.round(v / 24) + ' days' : Math.round(v) + ' hrs',
-  },
-  {
-    label: 'Acquisition Cost',
-    tier:  'T4 — Managed',
-    bRaw:  480,
-    aRaw:  148,
-    fmt:   (v: number) => '$' + Math.round(v),
-  },
+// ─── KPI raw data (language-independent) ─────────────────────────────────────
+const KPI_RAW = [
+  { bRaw: 0.8,  aRaw: 4.2,  type: 'percent' as const },
+  { bRaw: 14,   aRaw: 97,   type: 'count'   as const },
+  { bRaw: 252,  aRaw: 4,    type: 'time'    as const },
+  { bRaw: 2,    aRaw: 23,   type: 'hours'   as const },
+  { bRaw: 144,  aRaw: 3,    type: 'time'    as const },
+  { bRaw: 480,  aRaw: 148,  type: 'money'   as const },
 ];
+
+function buildKpis(language: Language) {
+  const { kpis, units } = translations[language].dashboard;
+  return KPI_RAW.map((raw, i) => ({
+    label: kpis[i].label,
+    tier:  kpis[i].tier,
+    bRaw:  raw.bRaw,
+    aRaw:  raw.aRaw,
+    fmt: (v: number) => {
+      switch (raw.type) {
+        case 'percent': return v.toFixed(1) + '%';
+        case 'count':   return Math.round(v).toString();
+        case 'time':    return v >= 60 ? (v / 60).toFixed(1) + units.hrs : Math.round(v) + units.min;
+        case 'hours':   return Math.round(v) + units.hrs;
+        case 'money':   return '$' + Math.round(v);
+      }
+    },
+  }));
+}
 
 interface HeroDashboardProps {
   pinRef?: RefObject<HTMLElement>;
   onProgress?: (p: number) => void;
+  language?: Language;
 }
 
-export function HeroDashboard({ pinRef, onProgress }: HeroDashboardProps = {}) {
+export function HeroDashboard({ pinRef, onProgress, language = 'en' }: HeroDashboardProps = {}) {
+  const KPIS = buildKpis(language);
+  // Keep a ref to always-current KPIS so the ScrollTrigger closure uses the latest language
+  const kpisRef = useRef(KPIS);
+  kpisRef.current = KPIS;
+
   const wrapperRef      = useRef<HTMLDivElement>(null);
   const scanRef         = useRef<HTMLDivElement>(null);
   const cardRefs        = useRef<(HTMLDivElement | null)[]>([]);
@@ -85,6 +74,12 @@ export function HeroDashboard({ pinRef, onProgress }: HeroDashboardProps = {}) {
   const dotRef          = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
+    // ── Set initial opacity + values imperatively so React re-renders don't reset them ──
+    cardRefs.current.forEach(el => { if (el) el.style.opacity = '0'; });
+    valueRefs.current.forEach((el, i) => {
+      if (el) el.textContent = kpisRef.current[i].fmt(kpisRef.current[i].bRaw);
+    });
+
     // ── Stagger reveal cards on mount ──────────────────────────────────────
     gsap.fromTo(
       cardRefs.current.filter(Boolean),
@@ -115,7 +110,7 @@ export function HeroDashboard({ pinRef, onProgress }: HeroDashboardProps = {}) {
         }
 
         // Update each KPI value — handles both forward and reverse scroll
-        KPIS.forEach((kpi, i) => {
+        kpisRef.current.forEach((kpi, i) => {
           const col     = i % numCols;
           const trigger = colTriggers[col];
           const valEl   = valueRefs.current[i];
@@ -193,6 +188,11 @@ export function HeroDashboard({ pinRef, onProgress }: HeroDashboardProps = {}) {
     return () => st.kill();
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  // ── Re-sync animation state when language changes ──────────────────────
+  useEffect(() => {
+    ScrollTrigger.refresh();
+  }, [language]);
 
   return (
     <>
@@ -317,16 +317,13 @@ export function HeroDashboard({ pinRef, onProgress }: HeroDashboardProps = {}) {
               key={kpi.label}
               className="amp-card"
               ref={el => { cardRefs.current[i] = el; }}
-              style={{ opacity: 0 }}
             >
               <span className="amp-tier">{kpi.tier}</span>
               <span className="amp-label">{kpi.label}</span>
               <span
                 className="amp-value"
                 ref={el => { valueRefs.current[i] = el; }}
-              >
-                {kpi.fmt(kpi.bRaw)}
-              </span>
+              />
             </div>
           ))}
         </div>

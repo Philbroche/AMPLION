@@ -75,7 +75,7 @@ export function Header() {
             </button>
             <button
               onClick={openModal}
-              className="text-lg text-white hover:text-cyan transition-colors duration-300 font-medium relative group min-h-[44px]"
+              className="text-lg text-white hover:text-cyan focus:outline-none transition-colors duration-300 font-medium relative group min-h-[44px]"
             >
               {t.contact}
               <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-cyan transition-all duration-300 group-hover:w-full" />
@@ -149,7 +149,7 @@ export function Header() {
                   setIsMobileMenuOpen(false);
                   openModal();
                 }}
-                className="block text-lg text-white hover:text-cyan transition-colors duration-300 font-medium py-3 text-left w-full min-h-[44px]"
+                className="block text-lg text-white hover:text-cyan focus:outline-none transition-colors duration-300 font-medium py-3 text-left w-full min-h-[44px]"
               >
                 {t.contact}
               </button>

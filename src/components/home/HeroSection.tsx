@@ -86,7 +86,7 @@ export function HeroSection() {
 
       {/* Layer 0 — dashboard as full-bleed background (hidden on mobile) */}
       <div className="amp-hero-bg absolute inset-0 z-0 hidden sm:block">
-        <HeroDashboard pinRef={sectionRef} onProgress={handleProgress} />
+        <HeroDashboard pinRef={sectionRef} onProgress={handleProgress} language={language} />
       </div>
 
       {/* Layer 1 — fully transparent at top/bottom edges so card frames show, heavier at text centre */}
@@ -109,7 +109,7 @@ export function HeroSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="w-full max-w-5xl mx-auto"
+          className="w-full max-w-5xl mx-auto sm:-mt-24"
         >
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -146,7 +146,7 @@ export function HeroSection() {
                   trackClick('hero_cta_primary', 'button');
                   openModal();
                 }}
-                className="motion-safe:animate-pulse-glow w-full sm:w-auto"
+                className="motion-safe:animate-pulse-glow w-full sm:w-auto !text-xs sm:!text-lg !px-4 sm:!px-8"
               >
                 {t.cta}
               </Button>
