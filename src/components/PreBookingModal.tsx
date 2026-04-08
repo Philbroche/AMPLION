@@ -4,14 +4,8 @@ import { X } from 'lucide-react';
 import { Button } from './ui/Button';
 import { supabase } from '../lib/supabase';
 import { trackEvent } from '../lib/analytics';
-
-const SERVICE_OPTIONS = [
-  'Website Transformation',
-  'Workflow Automation',
-  'AI-Powered Creative',
-  'Full Digital Management',
-  'Not sure yet — I need advice',
-];
+import { useLanguage } from '../context/LanguageContext';
+import { translations } from '../translations';
 
 interface PreBookingModalProps {
   isOpen: boolean;
@@ -23,6 +17,8 @@ export function PreBookingModal({ isOpen, onClose }: PreBookingModalProps) {
   const [projectDescription, setProjectDescription] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState(false);
+  const { language } = useLanguage();
+  const t = translations[language].modal;
 
   const isFormComplete = selectedService !== '' && projectDescription.trim() !== '';
 
@@ -95,16 +91,16 @@ export function PreBookingModal({ isOpen, onClose }: PreBookingModalProps) {
               <div className="flex items-start justify-between mb-6">
                 <div>
                   <h2 id="modal-title" className="text-2xl font-bold text-white mb-2">
-                    Tell Us About Your Project
+                    {t.title}
                   </h2>
                   <p className="text-gray-400 text-sm">
-                    Takes 30 seconds — helps us make your strategy call as useful as possible.
+                    {t.subtitle}
                   </p>
                 </div>
                 <button
                   onClick={handleClose}
                   className="text-gray-400 hover:text-white transition-colors ml-4 flex-shrink-0 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-lg"
-                  aria-label="Close dialog"
+                  aria-label={t.closeDialog}
                 >
                   <X className="h-6 w-6" aria-hidden="true" />
                 </button>
@@ -112,10 +108,10 @@ export function PreBookingModal({ isOpen, onClose }: PreBookingModalProps) {
 
               <div className="mb-6">
                 <label className="block text-white font-medium mb-3">
-                  What are you looking to build? <span className="text-orange">*</span>
+                  {t.whatToBuild} <span className="text-orange">*</span>
                 </label>
                 <div className="flex flex-col sm:flex-row sm:flex-wrap gap-2">
-                  {SERVICE_OPTIONS.map((option) => (
+                  {t.serviceOptions.map((option) => (
                     <button
                       key={option}
                       type="button"
@@ -134,13 +130,13 @@ export function PreBookingModal({ isOpen, onClose }: PreBookingModalProps) {
 
               <div className="mb-6">
                 <label className="block text-white font-medium mb-3">
-                  Briefly describe what you have in mind <span className="text-orange">*</span>
+                  {t.briefDescription} <span className="text-orange">*</span>
                 </label>
                 <textarea
                   value={projectDescription}
                   onChange={(e) => setProjectDescription(e.target.value)}
                   rows={3}
-                  placeholder="Ex: I run a plumbing company and need a new website with online booking, or I want to automate my client follow-up emails..."
+                  placeholder={t.placeholder}
                   className="w-full px-4 py-3 bg-deepBg border border-cyan/30 rounded-lg text-white placeholder-gray-500 focus:border-cyan focus:outline-none resize-none"
                 />
               </div>
@@ -152,7 +148,7 @@ export function PreBookingModal({ isOpen, onClose }: PreBookingModalProps) {
                 isLoading={isSubmitting}
                 className="w-full"
               >
-                Continue to Book Your Call →
+                {t.cta}
               </Button>
 
               {submitError && (
@@ -161,7 +157,7 @@ export function PreBookingModal({ isOpen, onClose }: PreBookingModalProps) {
                   role="alert"
                   aria-live="polite"
                 >
-                  Something went wrong. Please try again or email us at{' '}
+                  {t.errorMessage}{' '}
                   <a href="mailto:Pbrochu@amplion.dev" className="underline">
                     Pbrochu@amplion.dev
                   </a>

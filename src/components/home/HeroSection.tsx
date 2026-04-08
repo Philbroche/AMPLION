@@ -5,9 +5,13 @@ import { Button } from '../ui/Button';
 import { HeroDashboard } from '../HeroDashboard';
 import { trackClick } from '../../lib/analytics';
 import { useBooking } from '../../context/BookingContext';
+import { useLanguage } from '../../context/LanguageContext';
+import { translations } from '../../translations';
 
 export function HeroSection() {
   const { openModal } = useBooking();
+  const { language } = useLanguage();
+  const t = translations[language].hero;
   const sectionRef = useRef<HTMLElement>(null);
   const badgeRef   = useRef<HTMLDivElement>(null);
 
@@ -119,7 +123,7 @@ export function HeroSection() {
               style={{ color: '#ff3347', borderColor: 'rgba(255,51,71,0.35)', backgroundColor: 'rgba(255,51,71,0.10)' }}
             >
               <Zap className="h-4 w-4" aria-hidden="true" />
-              <span>AI Automation for Growing Businesses</span>
+              <span>{t.badge}</span>
             </div>
           </motion.div>
 
@@ -129,10 +133,10 @@ export function HeroSection() {
             transition={{ duration: 0.8, delay: 0.5 }}
           >
             <h2 className="text-5xl sm:text-6xl md:text-7xl font-bold text-white mb-4 drop-shadow-[0_0_30px_rgba(0,229,255,0.25)]">
-              Less Manual Work. More Free Time. More Growth.
+              {t.headline}
             </h2>
             <p className="text-lg sm:text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
-              We design and build custom AI automation systems that eliminate bottlenecks, cut operational costs, and free your team to focus on what actually grows the business.
+              {t.subheadline}
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -144,7 +148,7 @@ export function HeroSection() {
                 }}
                 className="motion-safe:animate-pulse-glow w-full sm:w-auto"
               >
-                Get Your Free Automation Audit →
+                {t.cta}
               </Button>
             </div>
           </motion.div>

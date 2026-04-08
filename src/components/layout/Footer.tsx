@@ -2,9 +2,13 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Linkedin, Twitter, Youtube, Mail } from 'lucide-react';
 import { useBooking } from '../../context/BookingContext';
+import { useLanguage } from '../../context/LanguageContext';
+import { translations } from '../../translations';
 
 export function Footer() {
   const { openModal } = useBooking();
+  const { language } = useLanguage();
+  const t = translations[language].footer;
 
   return (
     <footer className="bg-navy text-white">
@@ -13,70 +17,57 @@ export function Footer() {
           <div>
             <img src="/Sleek Circular Design for AMPLION (2).png" alt="Amplion" className="h-16 w-16 mb-4" />
             <p className="text-gray-300 text-sm">
-              Amplifying Business Intelligence Through AI Automation
+              {t.tagline}
             </p>
           </div>
 
           <div>
-            <h3 className="text-cyan font-semibold mb-4">Services</h3>
+            <h3 className="text-cyan font-semibold mb-4">{t.servicesHeading}</h3>
             <ul className="space-y-2 text-sm">
-              <li>
-                <Link to="/#services" className="text-gray-300 hover:text-cyan transition-colors">
-                  Website Development
-                </Link>
-              </li>
-              <li>
-                <Link to="/#services" className="text-gray-300 hover:text-cyan transition-colors">
-                  Workflow Automation
-                </Link>
-              </li>
-              <li>
-                <Link to="/#services" className="text-gray-300 hover:text-cyan transition-colors">
-                  AI-Powered Creative
-                </Link>
-              </li>
-              <li>
-                <Link to="/#services" className="text-gray-300 hover:text-cyan transition-colors">
-                  Managed Systems
-                </Link>
-              </li>
+              {t.serviceLinks.map((link) => (
+                <li key={link}>
+                  <Link to="/#services" className="text-gray-300 hover:text-cyan transition-colors">
+                    {link}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
           <div>
-            <h3 className="text-cyan font-semibold mb-4">Company</h3>
+            <h3 className="text-cyan font-semibold mb-4">{t.companyHeading}</h3>
             <ul className="space-y-2 text-sm">
               <li>
                 <button
                   onClick={openModal}
                   className="text-gray-300 hover:text-cyan transition-colors text-sm text-left"
                 >
-                  Contact
+                  {t.contact}
                 </button>
               </li>
               <li>
                 <Link to="/privacy-policy" className="text-gray-300 hover:text-cyan transition-colors">
-                  Privacy Policy
+                  {t.privacyPolicy}
                 </Link>
               </li>
               <li>
                 <Link to="/terms" className="text-gray-300 hover:text-cyan transition-colors">
-                  Terms of Service
+                  {t.terms}
                 </Link>
               </li>
             </ul>
           </div>
 
           <div>
-            <h3 className="text-cyan font-semibold mb-4">Get In Touch</h3>
+            <h3 className="text-cyan font-semibold mb-4">{t.getInTouchHeading}</h3>
             <p className="text-gray-300 text-sm mb-3">
-              Ready to talk? Book a free 15-minute strategy call or reach out directly.
+              {t.getInTouchText}
             </p>
             <button
               onClick={openModal}
               className="inline-block mb-3 text-cyan hover:underline text-sm font-medium text-left"
             >
-              Book a Free Strategy Call →
+              {t.bookCall}
             </button>
             <br />
             <a
@@ -90,17 +81,18 @@ export function Footer() {
 
         <div className="border-t border-cyan/20 pt-8">
           <p className="text-gray-400 text-xs text-center mb-4">
-            AMPLION · amplion.dev · Serving businesses across North America
+            {t.taglineBottom}
           </p>
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-gray-400 text-sm mb-4 md:mb-0">
-              © 2026 <span className="text-orange">Amplion</span>. All rights reserved.
+              © 2026 <span className="text-orange">Amplion</span>.{' '}
+              {language === 'en' ? 'All rights reserved.' : 'Tous droits réservés.'}
             </p>
             <div className="flex gap-4">
               <a
                 href="https://amplion.dev"
                 className="text-gray-400 hover:text-cyan transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center"
-                aria-label="Amplion on LinkedIn"
+                aria-label={t.ariaLinkedIn}
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -109,7 +101,7 @@ export function Footer() {
               <a
                 href="https://amplion.dev"
                 className="text-gray-400 hover:text-cyan transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center"
-                aria-label="Amplion on Twitter"
+                aria-label={t.ariaTwitter}
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -118,7 +110,7 @@ export function Footer() {
               <a
                 href="https://amplion.dev"
                 className="text-gray-400 hover:text-cyan transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center"
-                aria-label="Amplion on YouTube"
+                aria-label={t.ariaYouTube}
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -127,7 +119,7 @@ export function Footer() {
               <a
                 href="mailto:Pbrochu@amplion.dev"
                 className="text-gray-400 hover:text-cyan transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center"
-                aria-label="Email Amplion"
+                aria-label={t.ariaEmail}
               >
                 <Mail className="h-5 w-5" aria-hidden="true" />
               </a>

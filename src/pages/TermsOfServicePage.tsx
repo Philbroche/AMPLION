@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
+import { useLanguage } from '../context/LanguageContext';
 import { Link } from 'react-router-dom';
 
 const EN = () => (
@@ -334,61 +335,30 @@ const FR = () => (
 );
 
 export function TermsOfServicePage() {
-  const [lang, setLang] = useState<'en' | 'fr'>('fr');
+  const { language } = useLanguage();
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    document.title = lang === 'fr' ? 'Conditions d\'utilisation — Amplion' : 'Terms of Service — Amplion';
-  }, [lang]);
+    document.title = language === 'fr' ? "Conditions d'utilisation — Amplion" : 'Terms of Service — Amplion';
+  }, [language]);
 
   return (
     <div className="min-h-screen bg-white pt-32 pb-20">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
 
-        <div className="flex items-start justify-between mb-2 gap-4">
-          <h1 className="text-4xl font-bold text-gray-900">
-            {lang === 'fr' ? "Conditions d'utilisation" : 'Terms of Service'}
-          </h1>
-          <div className="flex gap-2 flex-shrink-0 mt-1">
-            <button
-              onClick={() => setLang('fr')}
-              className={`px-3 py-1 rounded text-sm font-medium border transition-colors ${
-                lang === 'fr'
-                  ? 'bg-gray-900 text-white border-gray-900'
-                  : 'text-gray-500 border-gray-300 hover:border-gray-500'
-              }`}
-            >
-              FR
-            </button>
-            <button
-              onClick={() => setLang('en')}
-              className={`px-3 py-1 rounded text-sm font-medium border transition-colors ${
-                lang === 'en'
-                  ? 'bg-gray-900 text-white border-gray-900'
-                  : 'text-gray-500 border-gray-300 hover:border-gray-500'
-              }`}
-            >
-              EN
-            </button>
-          </div>
-        </div>
-
-        {lang === 'fr' && (
-          <div className="mb-6 p-3 bg-blue-50 border border-blue-200 rounded-lg text-sm text-blue-800">
-            Conformément à la Charte de la langue française, la version française vous est présentée en premier.
-            Vous pouvez choisir la version anglaise en cliquant sur « EN » ci-dessus.
-          </div>
-        )}
+        <h1 className="text-4xl font-bold text-gray-900 mb-2">
+          {language === 'fr' ? "Conditions d'utilisation" : 'Terms of Service'}
+        </h1>
 
         <p className="text-sm text-gray-500 mb-10">
-          {lang === 'fr' ? 'Dernière mise à jour : 2 avril 2026' : 'Last updated: April 2, 2026'}
+          {language === 'fr' ? 'Dernière mise à jour : 2 avril 2026' : 'Last updated: April 2, 2026'}
         </p>
 
-        {lang === 'fr' ? <FR /> : <EN />}
+        {language === 'fr' ? <FR /> : <EN />}
 
         <div className="mt-12 pt-8 border-t border-gray-200">
           <Link to="/" className="text-cyan-600 hover:underline text-sm">
-            {lang === 'fr' ? "← Retour à l'accueil" : '← Back to Home'}
+            {language === 'fr' ? "← Retour à l'accueil" : '← Back to Home'}
           </Link>
         </div>
       </div>
