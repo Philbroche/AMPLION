@@ -4,6 +4,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Toaster } from 'react-hot-toast';
 import { BookingProvider } from './context/BookingContext';
 import { useBooking } from './context/BookingContext';
+import { LanguageProvider } from './context/LanguageContext';
 import { PreBookingModal } from './components/PreBookingModal';
 import { Header } from './components/layout/Header';
 import { Footer } from './components/layout/Footer';
@@ -68,11 +69,13 @@ function AppContent() {
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <BookingProvider>
-        <BrowserRouter>
-          <AppContent />
-        </BrowserRouter>
-      </BookingProvider>
+      <LanguageProvider>
+        <BookingProvider>
+          <BrowserRouter>
+            <AppContent />
+          </BrowserRouter>
+        </BookingProvider>
+      </LanguageProvider>
     </QueryClientProvider>
   );
 }

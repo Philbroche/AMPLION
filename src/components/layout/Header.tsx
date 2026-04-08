@@ -3,12 +3,16 @@ import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useBooking } from '../../context/BookingContext';
+import { useLanguage } from '../../context/LanguageContext';
+import { translations } from '../../translations';
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
   const { openModal } = useBooking();
+  const { language, toggleLanguage } = useLanguage();
+  const t = translations[language].nav;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -52,37 +56,48 @@ export function Header() {
               onClick={() => scrollTo('hero')}
               className="text-lg text-white hover:text-cyan transition-colors duration-300 font-medium relative group min-h-[44px]"
             >
-              Home
+              {t.home}
               <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-cyan transition-all duration-300 group-hover:w-full" />
             </button>
             <button
               onClick={() => scrollTo('services')}
               className="text-lg text-white hover:text-cyan transition-colors duration-300 font-medium relative group min-h-[44px]"
             >
-              Services
+              {t.services}
               <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-cyan transition-all duration-300 group-hover:w-full" />
             </button>
             <button
               onClick={() => scrollTo('faq')}
               className="text-lg text-white hover:text-cyan transition-colors duration-300 font-medium relative group min-h-[44px]"
             >
-              FAQs
+              {t.faqs}
               <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-cyan transition-all duration-300 group-hover:w-full" />
             </button>
             <button
               onClick={openModal}
               className="text-lg text-white hover:text-cyan transition-colors duration-300 font-medium relative group min-h-[44px]"
             >
-              Contact
+              {t.contact}
               <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-cyan transition-all duration-300 group-hover:w-full" />
             </button>
           </nav>
 
           <div className="flex items-center gap-4">
+            {/* Language Toggle */}
+            <button
+              onClick={toggleLanguage}
+              aria-label={language === 'en' ? 'Passer en français' : 'Switch to English'}
+              className="flex items-center gap-1 px-3 py-1.5 rounded-full border border-cyan/40 text-sm font-semibold text-cyan hover:bg-cyan/10 transition-all duration-200 min-h-[36px]"
+            >
+              <span className={language === 'en' ? 'opacity-100' : 'opacity-40'}>EN</span>
+              <span className="text-cyan/40 mx-0.5">|</span>
+              <span className={language === 'fr' ? 'opacity-100' : 'opacity-40'}>FR</span>
+            </button>
+
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className="md:hidden text-white p-3 min-w-[44px] min-h-[44px] flex items-center justify-center"
-              aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
+              aria-label={isMobileMenuOpen ? t.closeMenu : t.openMenu}
               aria-expanded={isMobileMenuOpen}
               aria-controls="mobile-nav"
             >
@@ -109,7 +124,7 @@ export function Header() {
                 }}
                 className="block text-lg text-white hover:text-cyan transition-colors duration-300 font-medium py-3 text-left w-full min-h-[44px]"
               >
-                Home
+                {t.home}
               </button>
               <button
                 onClick={() => {
@@ -118,7 +133,7 @@ export function Header() {
                 }}
                 className="block text-lg text-white hover:text-cyan transition-colors duration-300 font-medium py-3 text-left w-full min-h-[44px]"
               >
-                Services
+                {t.services}
               </button>
               <button
                 onClick={() => {
@@ -127,7 +142,7 @@ export function Header() {
                 }}
                 className="block text-lg text-white hover:text-cyan transition-colors duration-300 font-medium py-3 text-left w-full min-h-[44px]"
               >
-                FAQs
+                {t.faqs}
               </button>
               <button
                 onClick={() => {
@@ -136,7 +151,7 @@ export function Header() {
                 }}
                 className="block text-lg text-white hover:text-cyan transition-colors duration-300 font-medium py-3 text-left w-full min-h-[44px]"
               >
-                Contact
+                {t.contact}
               </button>
             </nav>
           </motion.div>
