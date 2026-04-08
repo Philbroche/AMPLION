@@ -1,5 +1,5 @@
-import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Toaster } from 'react-hot-toast';
 import { BookingProvider } from './context/BookingContext';
@@ -22,10 +22,25 @@ const queryClient = new QueryClient({
   },
 });
 
+function ScrollToHash() {
+  const location = useLocation();
+  useEffect(() => {
+    if (location.hash) {
+      const id = location.hash.slice(1);
+      setTimeout(() => {
+        const el = document.getElementById(id);
+        if (el) el.scrollIntoView({ behavior: 'smooth' });
+      }, 100);
+    }
+  }, [location]);
+  return null;
+}
+
 function AppContent() {
   const { isOpen, closeModal } = useBooking();
   return (
     <>
+      <ScrollToHash />
       <div className="min-h-screen flex flex-col">
         <Header />
         <main className="flex-1">
