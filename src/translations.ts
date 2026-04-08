@@ -143,6 +143,26 @@ export const translations = {
       ariaEmail: 'Email Amplion',
     },
 
+    // 404
+    notFound: {
+      title: 'Page Not Found',
+      message: "The page you're looking for doesn't exist or has been moved.",
+      backHome: 'Back to Home',
+    },
+
+    // Dashboard
+    dashboard: {
+      kpis: [
+        { label: 'Lead Conversion Rate',  tier: 'T1 — Website' },
+        { label: 'Leads Per Month',        tier: 'T1 — Website' },
+        { label: 'Lead Response Time',     tier: 'T2 — Automation' },
+        { label: 'Hours Saved Per Week',   tier: 'T2 — Automation' },
+        { label: 'Posts Publishing Speed', tier: 'T3 — AI Creative' },
+        { label: 'Acquisition Cost',       tier: 'T4 — Managed' },
+      ],
+      units: { hrs: ' hrs', min: ' min', days: ' days' },
+    },
+
     // Modal
     modal: {
       title: 'Tell Us About Your Project',
@@ -177,7 +197,7 @@ export const translations = {
 
     // Hero
     hero: {
-      badge: "Automatisation IA pour les entreprises en croissance",
+      badge: "Solutions d'IA pour PME en croissance",
       headline: "Moins de travail manuel. Plus de temps. Plus d'argent.",
       subheadline:
         "Nous concevons et construisons des systèmes d'automatisation IA sur mesure qui éliminent les goulots d'étranglement, réduisent les coûts opérationnels et libèrent votre équipe pour se concentrer sur ce qui fait vraiment croître l'entreprise.",
@@ -311,6 +331,26 @@ export const translations = {
       ariaTwitter: 'Amplion sur Twitter',
       ariaYouTube: 'Amplion sur YouTube',
       ariaEmail: 'Envoyer un courriel à Amplion',
+    },
+
+    // 404
+    notFound: {
+      title: 'Page introuvable',
+      message: "La page que vous recherchez n'existe pas ou a été déplacée.",
+      backHome: "Retour à l'accueil",
+    },
+
+    // Dashboard
+    dashboard: {
+      kpis: [
+        { label: 'Taux de conversion',          tier: 'T1 — Site web' },
+        { label: 'Prospects par mois',           tier: 'T1 — Site web' },
+        { label: 'Temps de réponse',             tier: 'T2 — Automatisation' },
+        { label: 'Heures économisées / semaine', tier: 'T2 — Automatisation' },
+        { label: 'Vitesse de publication',       tier: 'T3 — IA Créative' },
+        { label: "Coût d'acquisition",           tier: 'T4 — Géré' },
+      ],
+      units: { hrs: ' h', min: ' min', days: ' j' },
     },
 
     // Modal

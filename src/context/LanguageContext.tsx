@@ -10,10 +10,17 @@ interface LanguageContextType {
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
-  const [language, setLanguage] = useState<Language>('fr');
+  const [language, setLanguage] = useState<Language>(() => {
+    const saved = localStorage.getItem('amplion-language');
+    return (saved === 'fr' || saved === 'en') ? saved : 'en';
+  });
 
   const toggleLanguage = () => {
-    setLanguage((prev) => (prev === 'en' ? 'fr' : 'en'));
+    setLanguage((prev) => {
+      const next = prev === 'en' ? 'fr' : 'en';
+      localStorage.setItem('amplion-language', next);
+      return next;
+    });
   };
 
   return (
