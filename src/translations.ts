@@ -172,6 +172,12 @@ export const translations = {
       briefDescription: 'Briefly describe what you have in mind',
       placeholder:
         'Ex: I run a plumbing company and need a new website with online booking, or I want to automate my client follow-up emails...',
+      nameLabel: 'Your name',
+      namePlaceholder: 'Jane Smith',
+      emailLabel: 'Email',
+      emailPlaceholder: 'you@company.com',
+      phoneLabel: 'Phone',
+      phonePlaceholder: '(555) 123-4567',
       cta: 'Continue to Book Your Call →',
       errorMessage: 'Something went wrong. Please try again or email us at',
       serviceOptions: [
@@ -362,6 +368,12 @@ export const translations = {
       briefDescription: 'Décrivez brièvement ce que vous avez en tête',
       placeholder:
         "Ex : Je gère une entreprise de plomberie et j'ai besoin d'un nouveau site web avec réservation en ligne, ou je veux automatiser mes courriels de suivi client...",
+      nameLabel: 'Votre nom',
+      namePlaceholder: 'Jean Tremblay',
+      emailLabel: 'Courriel',
+      emailPlaceholder: 'vous@entreprise.com',
+      phoneLabel: 'Téléphone',
+      phonePlaceholder: '(514) 123-4567',
       cta: 'Continuer pour réserver votre appel →',
       errorMessage: "Une erreur s'est produite. Veuillez réessayer ou nous envoyer un courriel à",
       serviceOptions: [
