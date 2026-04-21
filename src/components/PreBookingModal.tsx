@@ -15,12 +15,21 @@ interface PreBookingModalProps {
 export function PreBookingModal({ isOpen, onClose }: PreBookingModalProps) {
   const [selectedService, setSelectedService] = useState('');
   const [projectDescription, setProjectDescription] = useState('');
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState(false);
   const { language } = useLanguage();
   const t = translations[language].modal;
 
-  const isFormComplete = selectedService !== '' && projectDescription.trim() !== '';
+  const emailIsValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
+  const isFormComplete =
+    selectedService !== '' &&
+    projectDescription.trim() !== '' &&
+    name.trim() !== '' &&
+    emailIsValid &&
+    phone.trim() !== '';
 
   const openCalendly = () => {
     (window as any).Calendly.initPopupWidget({
@@ -32,6 +41,9 @@ export function PreBookingModal({ isOpen, onClose }: PreBookingModalProps) {
     onClose();
     setSelectedService('');
     setProjectDescription('');
+    setName('');
+    setEmail('');
+    setPhone('');
     setSubmitError(false);
   };
 
@@ -43,6 +55,9 @@ export function PreBookingModal({ isOpen, onClose }: PreBookingModalProps) {
     const { error } = await supabase.from('booking_requests').insert({
       service: selectedService,
       project_description: projectDescription,
+      name: name.trim(),
+      email: email.trim(),
+      phone: phone.trim(),
     });
 
     if (error) {
@@ -138,6 +153,53 @@ export function PreBookingModal({ isOpen, onClose }: PreBookingModalProps) {
                   rows={3}
                   placeholder={t.placeholder}
                   className="w-full px-4 py-3 bg-deepBg border border-cyan/30 rounded-lg text-white placeholder-gray-500 focus:border-cyan focus:outline-none resize-none"
+                />
+              </div>
+
+              <div className="mb-4">
+                <label htmlFor="booking-name" className="block text-white font-medium mb-2">
+                  {t.nameLabel} <span className="text-orange">*</span>
+                </label>
+                <input
+                  id="booking-name"
+                  type="text"
+                  autoComplete="name"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  placeholder={t.namePlaceholder}
+                  className="w-full px-4 py-3 bg-deepBg border border-cyan/30 rounded-lg text-white placeholder-gray-500 focus:border-cyan focus:outline-none"
+                />
+              </div>
+
+              <div className="mb-4">
+                <label htmlFor="booking-email" className="block text-white font-medium mb-2">
+                  {t.emailLabel} <span className="text-orange">*</span>
+                </label>
+                <input
+                  id="booking-email"
+                  type="email"
+                  autoComplete="email"
+                  inputMode="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder={t.emailPlaceholder}
+                  className="w-full px-4 py-3 bg-deepBg border border-cyan/30 rounded-lg text-white placeholder-gray-500 focus:border-cyan focus:outline-none"
+                />
+              </div>
+
+              <div className="mb-6">
+                <label htmlFor="booking-phone" className="block text-white font-medium mb-2">
+                  {t.phoneLabel} <span className="text-orange">*</span>
+                </label>
+                <input
+                  id="booking-phone"
+                  type="tel"
+                  autoComplete="tel"
+                  inputMode="tel"
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
+                  placeholder={t.phonePlaceholder}
+                  className="w-full px-4 py-3 bg-deepBg border border-cyan/30 rounded-lg text-white placeholder-gray-500 focus:border-cyan focus:outline-none"
                 />
               </div>
 
