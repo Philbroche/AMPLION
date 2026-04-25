@@ -58,6 +58,13 @@ const EN = () => (
         <li>
           <strong>Communication records</strong> — emails or messages you send directly to us.
         </li>
+        <li>
+          <strong>Phone numbers (on behalf of client businesses)</strong> — when our agency clients
+          (home service contractors) engage our review-request automation service, they provide
+          phone numbers of their own customers. We process these phone numbers solely to send a
+          single review-request SMS per completed service on behalf of the contractor. We do not
+          solicit phone numbers directly from end consumers through this website.
+        </li>
       </ul>
       <p className="mt-3">
         We do not collect payment card information, government identification, or any sensitive
@@ -75,6 +82,10 @@ const EN = () => (
           your booking date, or 2 years if an active business relationship begins).</li>
         <li>Communicate about an active project engagement.</li>
         <li>Improve how we respond to inquiries and communicate with potential clients.</li>
+        <li>
+          Send a single SMS message per completed service on behalf of our agency clients,
+          asking the recipient to leave a Google review for the contractor who served them.
+        </li>
       </ul>
       <p className="mt-3">
         We will never sell, rent, or trade your personal information to any third party for marketing
@@ -228,7 +239,69 @@ const EN = () => (
     </section>
 
     <section>
-      <h2 className="text-xl font-semibold text-gray-900 mb-3">11. Changes to This Policy</h2>
+      <h2 className="text-xl font-semibold text-gray-900 mb-3">11. SMS / Text Message Communications</h2>
+
+      <p>
+        Amplion operates a Review Request Automation service on behalf of our agency clients
+        (home service contractors located in the United States). When one of our clients
+        completes a service for their customer, we send a single SMS message to the customer's
+        phone number on the client's behalf, requesting a Google review.
+      </p>
+
+      <p className="mt-3">
+        <strong>Message frequency.</strong> Recipients receive at most one (1) SMS per completed
+        service interaction. We do not use SMS for marketing, promotional content, recurring
+        outreach, or any communication unrelated to the specific service the recipient received.
+      </p>
+
+      <p className="mt-3">
+        <strong>Message content.</strong> Each message identifies the contractor's business
+        name, thanks the recipient for their service, requests a Google review with a direct
+        link, and includes opt-out instructions.
+      </p>
+
+      <p className="mt-3">
+        <strong>Carrier rates.</strong> Standard message and data rates may apply, depending on
+        the recipient's mobile carrier and plan.
+      </p>
+
+      <p className="mt-3">
+        <strong>Opt-out.</strong> Recipients can stop receiving messages at any time by replying{' '}
+        <strong>STOP</strong> to any message. The opt-out is processed immediately by our SMS
+        provider (Twilio) and applies across all future messages from our system. Recipients can
+        reply <strong>HELP</strong> to receive a help message identifying the sender.
+      </p>
+
+      <p className="mt-3">
+        <strong>Mobile carriers.</strong> Mobile carriers are not liable for delayed or
+        undelivered messages.
+      </p>
+
+      <p className="mt-3">
+        <strong>Data handling.</strong> Phone numbers and SMS message content are stored solely
+        for the purpose of operating this messaging service and providing reporting to the
+        agency client who provided the data. Phone numbers are not sold, rented, or shared with
+        any third party for marketing purposes. Phone numbers and message records are retained
+        per the data-processing terms agreed between Amplion and the agency client, and are
+        deleted upon client offboarding or upon explicit request from the contractor or end
+        recipient.
+      </p>
+
+      <p className="mt-3">
+        <strong>Consent basis.</strong> The agency client (the contractor) is responsible for
+        obtaining the recipient's prior consent to receive SMS messages, typically collected
+        verbally when the recipient books or schedules service with the contractor. Amplion
+        processes phone numbers as a data processor under Quebec Law 25 and applicable U.S.
+        consumer protection laws (TCPA / CTIA guidelines). Recipients with concerns about
+        consent should contact the contractor directly or contact Amplion's Privacy Officer at{' '}
+        <a href="mailto:Pbrochu@amplion.dev" className="text-cyan-600 hover:underline">
+          Pbrochu@amplion.dev
+        </a>.
+      </p>
+    </section>
+
+    <section>
+      <h2 className="text-xl font-semibold text-gray-900 mb-3">12. Changes to This Policy</h2>
       <p>
         We may update this Privacy Policy from time to time. When we do, we will revise the
         "Last updated" date at the top of this page. Continued use of our website after any
@@ -289,6 +362,15 @@ const FR = () => (
         <li><strong>Nom et adresse courriel</strong> — recueillis lors de la prise de rendez-vous via Calendly.</li>
         <li><strong>Détails du projet</strong> — toute information que vous choisissez de partager dans le formulaire de pré-réservation ou les notes Calendly.</li>
         <li><strong>Échanges de communication</strong> — courriels ou messages que vous nous envoyez directement.</li>
+        <li>
+          <strong>Numéros de téléphone (pour le compte de clients d'affaires)</strong> — lorsque
+          nos clients d'agence (entrepreneurs en services à domicile) retiennent notre service
+          d'automatisation de demandes d'avis, ils nous fournissent les numéros de téléphone de
+          leurs propres clients. Nous traitons ces numéros uniquement pour envoyer un seul SMS
+          de demande d'avis par service complété, pour le compte de l'entrepreneur. Nous ne
+          sollicitons pas de numéros de téléphone directement auprès des consommateurs finaux
+          via ce site.
+        </li>
       </ul>
       <p className="mt-3">
         Nous n'utilisons pas de prise de décision automatisée ou de profilage qui prend des décisions
@@ -304,6 +386,11 @@ const FR = () => (
         <li>Assurer le suivi de votre demande de projet.</li>
         <li>Communiquer dans le cadre d'un mandat actif.</li>
         <li>Améliorer notre façon de répondre aux demandes.</li>
+        <li>
+          Envoyer un seul SMS par service complété, pour le compte de nos clients d'agence,
+          afin de demander au destinataire de laisser un avis Google pour l'entrepreneur qui
+          a effectué le service.
+        </li>
       </ul>
       <p className="mt-3">Nous ne vendons, ne louons ni n'échangeons jamais vos renseignements personnels à des tiers à des fins de marketing.</p>
     </section>
@@ -371,6 +458,76 @@ const FR = () => (
       </p>
     </section>
 
+    <section>
+      <h2 className="text-xl font-semibold text-gray-900 mb-3">10. Communications par SMS / message texte</h2>
+
+      <p>
+        Amplion exploite un service d'automatisation de demandes d'avis pour le compte de ses
+        clients d'agence (entrepreneurs en services à domicile situés aux États-Unis). Lorsqu'un
+        de nos clients termine un service auprès d'un de ses clients, nous envoyons un seul SMS
+        au numéro de téléphone du client final, pour le compte de notre client, pour demander
+        un avis Google.
+      </p>
+
+      <p className="mt-3">
+        <strong>Fréquence des messages.</strong> Les destinataires reçoivent au maximum un (1)
+        SMS par service complété. Nous n'utilisons pas les SMS à des fins de marketing, de
+        contenu promotionnel, de sollicitation récurrente ou pour toute communication non liée
+        au service précis reçu par le destinataire.
+      </p>
+
+      <p className="mt-3">
+        <strong>Contenu des messages.</strong> Chaque message identifie le nom de l'entreprise
+        de l'entrepreneur, remercie le destinataire pour son service, demande un avis Google
+        avec un lien direct, et inclut les instructions de désabonnement.
+      </p>
+
+      <p className="mt-3">
+        <strong>Frais de l'opérateur.</strong> Des frais de messagerie et de données standards
+        peuvent s'appliquer, selon l'opérateur mobile et le forfait du destinataire.
+      </p>
+
+      <p className="mt-3">
+        <strong>Désabonnement.</strong> Les destinataires peuvent cesser de recevoir des
+        messages à tout moment en répondant <strong>STOP</strong> à n'importe quel message. Le
+        désabonnement est traité immédiatement par notre fournisseur SMS (Twilio) et s'applique
+        à tous les messages futurs de notre système. Les destinataires peuvent répondre{' '}
+        <strong>HELP</strong> (ou <strong>AIDE</strong>) pour recevoir un message d'aide
+        identifiant l'expéditeur.
+      </p>
+
+      <p className="mt-3">
+        <strong>Opérateurs mobiles.</strong> Les opérateurs mobiles ne sont pas responsables
+        des messages retardés ou non livrés.
+      </p>
+
+      <p className="mt-3">
+        <strong>Traitement des données.</strong> Les numéros de téléphone et le contenu des
+        messages SMS sont conservés uniquement aux fins d'exploitation de ce service de
+        messagerie et pour fournir des rapports au client d'agence ayant fourni les données.
+        Les numéros de téléphone ne sont ni vendus, ni loués, ni partagés avec un tiers à des
+        fins de marketing. Les numéros et les enregistrements de messages sont conservés selon
+        les modalités de traitement des données convenues entre Amplion et le client d'agence,
+        et sont supprimés au départ du client ou sur demande explicite de l'entrepreneur ou du
+        destinataire.
+      </p>
+
+      <p className="mt-3">
+        <strong>Base du consentement.</strong> Le client d'agence (l'entrepreneur) est
+        responsable d'obtenir le consentement préalable du destinataire à recevoir des SMS,
+        généralement recueilli verbalement lorsque le destinataire réserve ou planifie un
+        service auprès de l'entrepreneur. Amplion traite les numéros de téléphone à titre de
+        sous-traitant en vertu de la Loi 25 du Québec et des lois américaines applicables en
+        matière de protection des consommateurs (TCPA / lignes directrices CTIA). Les
+        destinataires ayant des préoccupations concernant le consentement doivent contacter
+        l'entrepreneur directement ou contacter le responsable de la protection des
+        renseignements personnels d'Amplion à{' '}
+        <a href="mailto:Pbrochu@amplion.dev" className="text-cyan-600 hover:underline">
+          Pbrochu@amplion.dev
+        </a>.
+      </p>
+    </section>
+
   </div>
 );
 
@@ -391,7 +548,7 @@ export function PrivacyPolicyPage() {
         </h1>
 
         <p className="text-sm text-gray-500 mb-10">
-          {language === 'fr' ? 'Dernière mise à jour : 2 avril 2026' : 'Last updated: April 2, 2026'}
+          {language === 'fr' ? 'Dernière mise à jour : 25 avril 2026' : 'Last updated: April 25, 2026'}
         </p>
 
         {language === 'en' ? <EN /> : <FR />}
