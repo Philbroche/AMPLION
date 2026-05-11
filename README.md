@@ -358,4 +358,4 @@ For questions or issues, contact AMPLION support through the website contact for
 
 ---
 
-**Built with excellence by AMPLION — Amplifying what your team does best, automating the rest.**
+**Built with excellence by AMPLION — Amplifying what your team does best and automating the rest.**
