@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, ChevronDown } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useBooking } from '../../context/BookingContext';
 import { useLanguage } from '../../context/LanguageContext';
@@ -9,6 +9,11 @@ import { translations } from '../../translations';
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  // TFV-TEMP-NAV: Remove after Twilio TFV approval
+  const [isLegalOpen, setIsLegalOpen] = useState(false);
+  const [isMobileLegalOpen, setIsMobileLegalOpen] = useState(false);
+  const legalRef = useRef<HTMLDivElement>(null);
+  // /TFV-TEMP-NAV
   const location = useLocation();
   const navigate = useNavigate();
   const { openModal } = useBooking();
@@ -25,7 +30,24 @@ export function Header() {
 
   useEffect(() => {
     setIsMobileMenuOpen(false);
+    // TFV-TEMP-NAV: Remove after Twilio TFV approval
+    setIsLegalOpen(false);
+    setIsMobileLegalOpen(false);
+    // /TFV-TEMP-NAV
   }, [location]);
+
+  // TFV-TEMP-NAV: Remove after Twilio TFV approval
+  useEffect(() => {
+    if (!isLegalOpen) return;
+    const handleClickOutside = (e: MouseEvent) => {
+      if (legalRef.current && !legalRef.current.contains(e.target as Node)) {
+        setIsLegalOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [isLegalOpen]);
+  // /TFV-TEMP-NAV
 
   const scrollTo = (id: string) => {
     if (location.pathname !== '/') {
@@ -78,6 +100,54 @@ export function Header() {
               {t.faqs}
               <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-cyan transition-all duration-300 group-hover:w-full" />
             </button>
+            {/* TFV-TEMP-NAV: Remove after Twilio TFV approval */}
+            <div ref={legalRef} className="relative">
+              <button
+                onClick={() => setIsLegalOpen((v) => !v)}
+                aria-haspopup="true"
+                aria-expanded={isLegalOpen}
+                className="flex items-center gap-1 text-lg text-white hover:text-cyan transition-colors duration-300 font-medium relative group min-h-[44px]"
+              >
+                Legal
+                <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${isLegalOpen ? 'rotate-180' : ''}`} />
+                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-cyan transition-all duration-300 group-hover:w-full" />
+              </button>
+              <AnimatePresence>
+                {isLegalOpen && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -8 }}
+                    transition={{ duration: 0.18 }}
+                    className="absolute right-0 mt-3 w-56 rounded-lg bg-navy/95 backdrop-blur-md shadow-lg border border-cyan/20 py-2"
+                    role="menu"
+                  >
+                    <Link
+                      to="/privacy-policy"
+                      role="menuitem"
+                      className="block px-4 py-2 text-white hover:text-cyan hover:bg-white/5 transition-colors duration-200"
+                    >
+                      Privacy Policy
+                    </Link>
+                    <Link
+                      to="/terms"
+                      role="menuitem"
+                      className="block px-4 py-2 text-white hover:text-cyan hover:bg-white/5 transition-colors duration-200"
+                    >
+                      Terms of Service
+                    </Link>
+                    <Link
+                      to="/sms-consent"
+                      role="menuitem"
+                      className="block px-4 py-2 text-white hover:text-cyan hover:bg-white/5 transition-colors duration-200"
+                    >
+                      SMS Consent Script
+                    </Link>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+            {/* /TFV-TEMP-NAV */}
             <button
               onClick={openModal}
               className="text-lg text-white hover:text-cyan focus:outline-none transition-colors duration-300 font-medium relative group min-h-[44px]"
@@ -149,6 +219,47 @@ export function Header() {
               >
                 {t.faqs}
               </button>
+              {/* TFV-TEMP-NAV: Remove after Twilio TFV approval */}
+              <div>
+                <button
+                  onClick={() => setIsMobileLegalOpen((v) => !v)}
+                  aria-expanded={isMobileLegalOpen}
+                  className="flex items-center justify-between text-lg text-white hover:text-cyan transition-colors duration-300 font-medium py-3 text-left w-full min-h-[44px]"
+                >
+                  <span>Legal</span>
+                  <ChevronDown className={`h-5 w-5 transition-transform duration-200 ${isMobileLegalOpen ? 'rotate-180' : ''}`} />
+                </button>
+                <AnimatePresence>
+                  {isMobileLegalOpen && (
+                    <motion.div
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: 'auto' }}
+                      exit={{ opacity: 0, height: 0 }}
+                      className="overflow-hidden pl-4"
+                    >
+                      <Link
+                        to="/privacy-policy"
+                        className="block text-base text-white/90 hover:text-cyan transition-colors duration-200 py-2 min-h-[44px]"
+                      >
+                        Privacy Policy
+                      </Link>
+                      <Link
+                        to="/terms"
+                        className="block text-base text-white/90 hover:text-cyan transition-colors duration-200 py-2 min-h-[44px]"
+                      >
+                        Terms of Service
+                      </Link>
+                      <Link
+                        to="/sms-consent"
+                        className="block text-base text-white/90 hover:text-cyan transition-colors duration-200 py-2 min-h-[44px]"
+                      >
+                        SMS Consent Script
+                      </Link>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+              {/* /TFV-TEMP-NAV */}
               <button
                 onClick={() => {
                   setIsMobileMenuOpen(false);
