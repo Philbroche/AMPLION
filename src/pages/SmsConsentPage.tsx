@@ -249,6 +249,23 @@ const FR = () => (
             within the next two hours. Thanks again for choosing us!"
           </p>
         </div>
+        <p className="mt-4 text-sm font-semibold text-gray-700">
+          Traduction française (à titre informatif) :
+        </p>
+        <div className="bg-gray-50 rounded-lg p-4 mt-2 space-y-2 border-l-4 border-cyan-300">
+          <p>
+            <strong className="text-gray-900">Technicien :</strong>{' '}
+            <span className="text-gray-600">[récite le script de consentement ci-dessus]</span>
+          </p>
+          <p>
+            <strong className="text-gray-900">Client :</strong> «&nbsp;Oui, ça me va.&nbsp;»
+          </p>
+          <p>
+            <strong className="text-gray-900">Technicien :</strong> «&nbsp;Parfait — vous
+            recevrez notre texto dans les deux prochaines heures. Merci encore de nous avoir
+            choisis&nbsp;!&nbsp;»
+          </p>
+        </div>
         <p className="mt-3 text-sm text-gray-600">
           La conversation se déroule en anglais entre nos clients partenaires américains et
           leurs clients finaux américains.
