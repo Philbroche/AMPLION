@@ -108,7 +108,7 @@ export function Header() {
                 aria-expanded={isLegalOpen}
                 className="flex items-center gap-1 text-lg text-white hover:text-cyan transition-colors duration-300 font-medium relative group min-h-[44px]"
               >
-                Legal
+                {language === 'fr' ? 'Légal' : 'Legal'}
                 <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${isLegalOpen ? 'rotate-180' : ''}`} />
                 <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-cyan transition-all duration-300 group-hover:w-full" />
               </button>
@@ -127,21 +127,21 @@ export function Header() {
                       role="menuitem"
                       className="block px-4 py-2 text-white hover:text-cyan hover:bg-white/5 transition-colors duration-200"
                     >
-                      Privacy Policy
+                      {language === 'fr' ? 'Politique de confidentialité' : 'Privacy Policy'}
                     </Link>
                     <Link
                       to="/terms"
                       role="menuitem"
                       className="block px-4 py-2 text-white hover:text-cyan hover:bg-white/5 transition-colors duration-200"
                     >
-                      Terms of Service
+                      {language === 'fr' ? "Conditions d'utilisation" : 'Terms of Service'}
                     </Link>
                     <Link
                       to="/sms-consent"
                       role="menuitem"
                       className="block px-4 py-2 text-white hover:text-cyan hover:bg-white/5 transition-colors duration-200"
                     >
-                      SMS Consent Script
+                      {language === 'fr' ? 'Script de consentement SMS' : 'SMS Consent Script'}
                     </Link>
                   </motion.div>
                 )}
@@ -226,7 +226,7 @@ export function Header() {
                   aria-expanded={isMobileLegalOpen}
                   className="flex items-center justify-between text-lg text-white hover:text-cyan transition-colors duration-300 font-medium py-3 text-left w-full min-h-[44px]"
                 >
-                  <span>Legal</span>
+                  <span>{language === 'fr' ? 'Légal' : 'Legal'}</span>
                   <ChevronDown className={`h-5 w-5 transition-transform duration-200 ${isMobileLegalOpen ? 'rotate-180' : ''}`} />
                 </button>
                 <AnimatePresence>
@@ -241,19 +241,19 @@ export function Header() {
                         to="/privacy-policy"
                         className="block text-base text-white/90 hover:text-cyan transition-colors duration-200 py-2 min-h-[44px]"
                       >
-                        Privacy Policy
+                        {language === 'fr' ? 'Politique de confidentialité' : 'Privacy Policy'}
                       </Link>
                       <Link
                         to="/terms"
                         className="block text-base text-white/90 hover:text-cyan transition-colors duration-200 py-2 min-h-[44px]"
                       >
-                        Terms of Service
+                        {language === 'fr' ? "Conditions d'utilisation" : 'Terms of Service'}
                       </Link>
                       <Link
                         to="/sms-consent"
                         className="block text-base text-white/90 hover:text-cyan transition-colors duration-200 py-2 min-h-[44px]"
                       >
-                        SMS Consent Script
+                        {language === 'fr' ? 'Script de consentement SMS' : 'SMS Consent Script'}
                       </Link>
                     </motion.div>
                   )}
