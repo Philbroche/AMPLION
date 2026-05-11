@@ -125,7 +125,7 @@ export const translations = {
 
     // Footer
     footer: {
-      tagline: 'Amplifying Business Intelligence Through AI Automation',
+      tagline: 'Amplifying what your team does best — automating the rest.',
       servicesHeading: 'Services',
       serviceLinks: ['Website Development', 'Workflow Automation', 'AI-Powered Creative', 'Managed Systems'],
       companyHeading: 'Company',
@@ -321,7 +321,7 @@ export const translations = {
 
     // Footer
     footer: {
-      tagline: "Amplifier l'intelligence d'affaires grâce à l'automatisation IA",
+      tagline: "Amplifie ce que votre équipe fait de mieux — automatise le reste.",
       servicesHeading: 'Services',
       serviceLinks: ['Développement Web', 'Automatisation de flux de travail', "Création assistée par l'IA", 'Systèmes gérés'],
       companyHeading: 'Entreprise',
