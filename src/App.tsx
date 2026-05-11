@@ -11,6 +11,7 @@ import { Footer } from './components/layout/Footer';
 import { HomePage } from './pages/HomePage';
 import { PrivacyPolicyPage } from './pages/PrivacyPolicyPage';
 import { TermsOfServicePage } from './pages/TermsOfServicePage';
+import { SmsConsentPage } from './pages/SmsConsentPage';
 import { NotFoundPage } from './pages/NotFoundPage';
 
 const queryClient = new QueryClient({
@@ -48,6 +49,7 @@ function AppContent() {
             <Route path="/" element={<HomePage />} />
             <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
             <Route path="/terms" element={<TermsOfServicePage />} />
+            <Route path="/sms-consent" element={<SmsConsentPage />} />
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </main>

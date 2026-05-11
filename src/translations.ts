@@ -132,6 +132,7 @@ export const translations = {
       contact: 'Contact',
       privacyPolicy: 'Privacy Policy',
       terms: 'Terms of Service',
+      smsConsent: 'SMS Consent Script',
       getInTouchHeading: 'Get In Touch',
       getInTouchText: 'Ready to talk? Book a free 15-minute strategy call or reach out directly.',
       bookCall: 'Book a Free Strategy Call →',
@@ -327,6 +328,7 @@ export const translations = {
       contact: 'Contact',
       privacyPolicy: 'Politique de confidentialité',
       terms: "Conditions d'utilisation",
+      smsConsent: 'Script de consentement SMS',
       getInTouchHeading: 'Contactez-nous',
       getInTouchText:
         'Prêt à discuter ? Réservez un appel stratégique gratuit de 15 minutes ou contactez-nous directement.',
