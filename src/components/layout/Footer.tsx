@@ -55,6 +55,11 @@ export function Footer() {
                   {t.terms}
                 </Link>
               </li>
+              <li>
+                <Link to="/sms-consent" className="text-gray-300 hover:text-cyan transition-colors">
+                  {t.smsConsent}
+                </Link>
+              </li>
             </ul>
           </div>
 
