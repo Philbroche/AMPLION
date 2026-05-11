@@ -397,7 +397,14 @@ const FR = () => (
           a effectué le service.
         </li>
       </ul>
-      <p className="mt-3">Nous ne vendons, ne louons ni n'échangeons jamais vos renseignements personnels à des tiers à des fins de marketing.</p>
+      <p className="mt-3">
+        Nous ne transmettons aucun renseignement personnel à un tiers à des fins de marketing, de
+        publicité ou d'affiliation. Les renseignements personnels ne sont partagés qu'avec les
+        fournisseurs d'infrastructure nécessaires à la prestation de nos services (tels que
+        Calendly pour la prise de rendez-vous, Google Analytics pour l'analyse anonymisée du
+        site, et Twilio pour la messagerie SMS), chacun opérant selon ses propres engagements
+        publiés en matière de protection de la vie privée.
+      </p>
     </section>
 
     <section>
@@ -508,13 +515,16 @@ const FR = () => (
 
       <p className="mt-3">
         <strong>Traitement des données.</strong> Les numéros de téléphone et le contenu des
-        messages SMS sont conservés uniquement aux fins d'exploitation de ce service de
-        messagerie et pour fournir des rapports au client d'agence ayant fourni les données.
-        Les numéros de téléphone ne sont ni vendus, ni loués, ni partagés avec un tiers à des
-        fins de marketing. Les numéros et les enregistrements de messages sont conservés selon
-        les modalités de traitement des données convenues entre Amplion et le client d'agence,
-        et sont supprimés au départ du client ou sur demande explicite de l'entrepreneur ou du
-        destinataire.
+        messages SMS sont utilisés exclusivement pour exploiter ce service de messagerie et pour
+        fournir des rapports au client partenaire (l'entrepreneur) qui a fourni les données. Les
+        données ne sont partagées qu'avec les fournisseurs d'infrastructure nécessaires à la
+        transmission des messages (notamment notre opérateur SMS, Twilio) et avec le client
+        partenaire dont le destinataire est le client final. Nous ne transmettons aucun numéro
+        de téléphone ni aucune donnée SMS à un tiers à des fins de marketing, de publicité ou
+        d'affiliation. Les numéros de téléphone et l'historique des messages sont conservés
+        conformément aux ententes de traitement des données convenues entre Amplion et le client
+        partenaire, et sont supprimés lors du désengagement du client ou à la demande explicite
+        de l'entrepreneur ou du destinataire final.
       </p>
 
       <p className="mt-3">
