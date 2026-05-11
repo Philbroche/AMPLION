@@ -88,8 +88,11 @@ const EN = () => (
         </li>
       </ul>
       <p className="mt-3">
-        We will never sell, rent, or trade your personal information to any third party for marketing
-        purposes.
+        We do not provide your personal information to any third party for marketing, advertising,
+        or affiliate purposes. Personal information is shared only with the necessary infrastructure
+        providers required to deliver our services (such as Calendly for bookings, Google Analytics
+        for anonymized site analytics, and Twilio for SMS messaging), each of which operates under
+        their own published privacy commitments.
       </p>
     </section>
 
@@ -278,12 +281,14 @@ const EN = () => (
       </p>
 
       <p className="mt-3">
-        <strong>Data handling.</strong> Phone numbers and SMS message content are stored solely
-        for the purpose of operating this messaging service and providing reporting to the
-        agency client who provided the data. Phone numbers are not sold, rented, or shared with
-        any third party for marketing purposes. Phone numbers and message records are retained
-        per the data-processing terms agreed between Amplion and the agency client, and are
-        deleted upon client offboarding or upon explicit request from the contractor or end
+        <strong>Data handling.</strong> Phone numbers and SMS message content are used solely to
+        operate this messaging service and to provide reporting to the agency client who provided
+        the data. Data is shared only with the necessary infrastructure providers required to
+        deliver messages (specifically, our SMS carrier Twilio) and with the agency client whose
+        customer the recipient is. We do not provide phone numbers or SMS data to any third party
+        for marketing, advertising, or affiliate purposes. Phone numbers and message records are
+        retained per the data-processing terms agreed between Amplion and the agency client, and
+        are deleted upon client offboarding or upon explicit request from the contractor or end
         recipient.
       </p>
 
