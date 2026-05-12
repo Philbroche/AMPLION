@@ -89,9 +89,8 @@ export function Footer() {
             {t.taglineBottom}
           </p>
           <div className="flex flex-col md:flex-row justify-between items-center">
-            <p className="text-gray-400 text-sm mb-4 md:mb-0">
-              © 2026 <span className="text-orange">Amplion</span>.{' '}
-              {language === 'en' ? 'All rights reserved.' : 'Tous droits réservés.'}
+            <p className="text-gray-400 text-sm mb-4 md:mb-0 text-center md:text-left">
+              © 2026 <span className="text-orange">Amplion</span> · {t.copyright}
             </p>
             <div className="flex gap-4">
               <a

@@ -125,7 +125,7 @@ export const translations = {
 
     // Footer
     footer: {
-      tagline: 'Amplifying Business Intelligence Through AI Automation',
+      tagline: 'Amplifying what your team does best and automating the rest.',
       servicesHeading: 'Services',
       serviceLinks: ['Website Development', 'Workflow Automation', 'AI-Powered Creative', 'Managed Systems'],
       companyHeading: 'Company',
@@ -137,7 +137,7 @@ export const translations = {
       getInTouchText: 'Ready to talk? Book a free 15-minute strategy call or reach out directly.',
       bookCall: 'Book a Free Strategy Call →',
       taglineBottom: 'AMPLION · amplion.dev · Serving businesses across North America',
-      copyright: '© 2026 Amplion. All rights reserved.',
+      copyright: 'Operated by Phillip Brochu · Québec, Canada · All rights reserved.',
       ariaLinkedIn: 'Amplion on LinkedIn',
       ariaTwitter: 'Amplion on Twitter',
       ariaYouTube: 'Amplion on YouTube',
@@ -321,7 +321,7 @@ export const translations = {
 
     // Footer
     footer: {
-      tagline: "Amplifier l'intelligence d'affaires grâce à l'automatisation IA",
+      tagline: "Amplifie ce que votre équipe fait de mieux et automatise le reste.",
       servicesHeading: 'Services',
       serviceLinks: ['Développement Web', 'Automatisation de flux de travail', "Création assistée par l'IA", 'Systèmes gérés'],
       companyHeading: 'Entreprise',
@@ -334,7 +334,7 @@ export const translations = {
         'Prêt à discuter ? Réservez un appel stratégique gratuit de 15 minutes ou contactez-nous directement.',
       bookCall: 'Réserver un appel stratégique gratuit →',
       taglineBottom: "AMPLION · amplion.dev · Au service des entreprises partout en Amérique du Nord",
-      copyright: '© 2026 Amplion. Tous droits réservés.',
+      copyright: 'Exploité par Phillip Brochu · Québec, Canada · Tous droits réservés.',
       ariaLinkedIn: 'Amplion sur LinkedIn',
       ariaTwitter: 'Amplion sur Twitter',
       ariaYouTube: 'Amplion sur YouTube',

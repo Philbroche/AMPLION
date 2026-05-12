@@ -6,9 +6,10 @@ const EN = () => (
   <>
     <p className="text-gray-700 leading-relaxed mb-8">
       This page documents the verbal consent process used by Amplion's agency clients (home
-      service contractors) when collecting permission to send Review Request Automation SMS
-      messages. It is published for compliance and transparency purposes, in accordance with
-      CTIA messaging principles and TCPA / Quebec Law 25 requirements.
+      service contractors) when collecting permission from their existing customers to send a
+      single post-service review request SMS. It is published for compliance and transparency
+      purposes, in accordance with CTIA messaging principles and TCPA / Quebec Law 25
+      requirements.
     </p>
 
     <aside
@@ -47,8 +48,8 @@ const EN = () => (
           "Before we wrap up, we'd love to send you a single text message in the next couple of
           hours from [Contractor Business Name] with a link to leave a Google review for the
           service we just completed. You will receive one (1) message per service visit.
-          Standard message and data rates may apply. You can reply STOP at any time to opt out,
-          or reply HELP for assistance. Is it okay if we text you at this number?"
+          Standard message and data rates may apply. Reply STOP to opt out at any time, or
+          reply HELP for help. Is it okay if we text you at this number?"
         </blockquote>
         <p className="mt-3">
           The customer must respond with a verbal affirmative ("yes", "sure", "go ahead", or
@@ -105,7 +106,7 @@ const EN = () => (
           <br />
           1 msg per service. Msg &amp; data rates may apply.
           <br />
-          Reply STOP to opt out, HELP for help."
+          Reply STOP to opt out. Reply HELP for help."
         </blockquote>
       </section>
 
@@ -114,8 +115,8 @@ const EN = () => (
         <p>Customers may opt out at any time through any of the following:</p>
         <ul className="list-disc pl-6 mt-3 space-y-2">
           <li>
-            Reply <strong>STOP</strong> to any received SMS — processed immediately by our SMS
-            carrier (Twilio) and applied across all future messages from our system.
+            Reply <strong>STOP</strong> to opt out — processed immediately by our SMS carrier
+            (Twilio) and applied across all future messages from our system.
           </li>
           <li>
             Email{' '}
@@ -127,8 +128,8 @@ const EN = () => (
           <li>Verbally request removal during any service interaction with the contractor.</li>
         </ul>
         <p className="mt-3">
-          Customers may reply <strong>HELP</strong> to any message to receive a help response
-          identifying the sender and providing contact information.
+          Customers may reply <strong>HELP</strong> for help to any message to receive a
+          response identifying the sender and providing contact information.
         </p>
       </section>
 
@@ -163,10 +164,10 @@ const FR = () => (
   <>
     <p className="text-gray-700 leading-relaxed mb-8">
       Cette page documente le processus de consentement verbal utilisé par les clients
-      partenaires d'Amplion (entrepreneurs en services à domicile) pour obtenir la permission
-      d'envoyer des messages SMS d'automatisation de demandes d'avis. Elle est publiée à des
-      fins de conformité et de transparence, conformément aux principes de messagerie CTIA et
-      aux exigences TCPA / Loi 25 du Québec.
+      partenaires d'Amplion (entrepreneurs en services à domicile) pour obtenir, auprès de
+      leurs clients existants, la permission d'envoyer un seul message SMS de demande d'avis
+      après le service. Elle est publiée à des fins de conformité et de transparence,
+      conformément aux principes de messagerie CTIA et aux exigences TCPA / Loi 25 du Québec.
     </p>
 
     <aside
@@ -211,8 +212,8 @@ const FR = () => (
           "Before we wrap up, we'd love to send you a single text message in the next couple of
           hours from [Contractor Business Name] with a link to leave a Google review for the
           service we just completed. You will receive one (1) message per service visit.
-          Standard message and data rates may apply. You can reply STOP at any time to opt out,
-          or reply HELP for assistance. Is it okay if we text you at this number?"
+          Standard message and data rates may apply. Reply STOP to opt out at any time, or
+          reply HELP for help. Is it okay if we text you at this number?"
         </blockquote>
         <p className="mt-4 text-sm font-semibold text-gray-700">
           Traduction française (à titre informatif) :
@@ -222,8 +223,8 @@ const FR = () => (
           prochaines heures de la part de [Nom de l'entreprise partenaire] avec un lien pour
           laisser un avis Google concernant le service que nous venons d'effectuer. Vous
           recevrez un (1) message par visite de service. Des frais standards de messagerie et
-          de données peuvent s'appliquer. Vous pouvez répondre STOP à tout moment pour vous
-          désabonner, ou répondre HELP pour obtenir de l'aide. Acceptez-vous que nous vous
+          de données peuvent s'appliquer. Répondez STOP pour vous désabonner à tout moment, ou
+          répondez HELP pour obtenir de l'aide. Acceptez-vous que nous vous
           envoyions un message à ce numéro&nbsp;?&nbsp;»
         </blockquote>
         <p className="mt-3">
@@ -307,7 +308,7 @@ const FR = () => (
           <br />
           1 msg per service. Msg &amp; data rates may apply.
           <br />
-          Reply STOP to opt out, HELP for help."
+          Reply STOP to opt out. Reply HELP for help."
         </blockquote>
       </section>
 
@@ -316,8 +317,9 @@ const FR = () => (
         <p>Les clients peuvent se désabonner à tout moment par l'une des méthodes suivantes :</p>
         <ul className="list-disc pl-6 mt-3 space-y-2">
           <li>
-            Répondre <strong>STOP</strong> à tout SMS reçu — traité immédiatement par notre
-            opérateur SMS (Twilio) et appliqué à tous les messages futurs de notre système.
+            Répondre <strong>STOP</strong> pour vous désabonner — traité immédiatement par
+            notre opérateur SMS (Twilio) et appliqué à tous les messages futurs de notre
+            système.
           </li>
           <li>
             Envoyer un courriel à{' '}
@@ -332,8 +334,9 @@ const FR = () => (
           </li>
         </ul>
         <p className="mt-3">
-          Les clients peuvent répondre <strong>HELP</strong> à tout message pour recevoir une
-          réponse d'aide identifiant l'expéditeur et fournissant des coordonnées.
+          Les clients peuvent répondre <strong>HELP</strong> pour obtenir de l'aide à tout
+          message afin de recevoir une réponse identifiant l'expéditeur et fournissant des
+          coordonnées.
         </p>
       </section>
 
