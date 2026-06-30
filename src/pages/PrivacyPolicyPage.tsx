@@ -13,7 +13,8 @@ const EN = () => (
         can be reached at{' '}
         <a href="mailto:Pbrochu@amplion.dev" className="text-cyan-600 hover:underline">
           Pbrochu@amplion.dev
-        </a>.
+        </a>. Amplion is the operating name of Phillip Brochu, a sole proprietorship registered
+        in Québec under the trade name Solutions Amplion (NEQ 2282232406).
       </p>
       <p className="mt-3">
         This Privacy Policy explains what personal information we collect, how we use it, and your
@@ -246,7 +247,7 @@ const EN = () => (
 
       <p>
         Amplion operates a Review Request Automation service on behalf of our agency clients
-        (home service contractors located in the United States). When one of our clients
+        (home service contractors located in Canada, primarily Quebec). When one of our clients
         completes a service for their customer, we send a single SMS message to the customer's
         phone number on the client's behalf, requesting a Google review.
       </p>
@@ -284,7 +285,7 @@ const EN = () => (
         <strong>Data handling.</strong> Phone numbers and SMS message content are used solely to
         operate this messaging service and to provide reporting to the agency client who provided
         the data. Data is shared only with the necessary infrastructure providers required to
-        deliver messages (specifically, our SMS carrier Twilio) and with the agency client whose
+        deliver messages (specifically, our SMS carrier Twilio and our data-storage provider Airtable) and with the agency client whose
         customer the recipient is. We do not provide phone numbers or SMS data to any third party
         for marketing, advertising, or affiliate purposes. Phone numbers and message records are
         retained per the data-processing terms agreed between Amplion and the agency client, and
@@ -295,9 +296,9 @@ const EN = () => (
       <p className="mt-3">
         <strong>Consent basis.</strong> The agency client (the contractor) is responsible for
         obtaining the recipient's prior consent to receive SMS messages, typically collected
-        verbally when the recipient books or schedules service with the contractor. Amplion
-        processes phone numbers as a data processor under Quebec Law 25 and applicable U.S.
-        consumer protection laws (TCPA / CTIA guidelines). Recipients with concerns about
+        verbally when the recipient books or schedules service with the contractor. Amplion processes phone numbers as a data processor under Quebec's Law 25, PIPEDA,
+        and Canada's Anti-Spam Legislation (CASL), in accordance with CTIA messaging
+        guidelines. Recipients with concerns about
         consent should contact the contractor directly or contact Amplion's Privacy Officer at{' '}
         <a href="mailto:Pbrochu@amplion.dev" className="text-cyan-600 hover:underline">
           Pbrochu@amplion.dev
@@ -334,7 +335,8 @@ const FR = () => (
         <strong>amplion.dev</strong> et pouvons être joints à{' '}
         <a href="mailto:Pbrochu@amplion.dev" className="text-cyan-600 hover:underline">
           Pbrochu@amplion.dev
-        </a>.
+        </a>. Amplion est le nom commercial de Phillip Brochu, une entreprise individuelle
+        immatriculée au Québec sous le nom Solutions Amplion (NEQ 2282232406).
       </p>
       <p className="mt-3">
         Cette Politique de confidentialité explique quels renseignements personnels nous recueillons,
@@ -475,7 +477,7 @@ const FR = () => (
 
       <p>
         Amplion exploite un service d'automatisation de demandes d'avis pour le compte de ses
-        clients d'agence (entrepreneurs en services à domicile situés aux États-Unis). Lorsqu'un
+        clients d'agence (entrepreneurs en services à domicile situés au Canada, principalement au Québec). Lorsqu'un
         de nos clients termine un service auprès d'un de ses clients, nous envoyons un seul SMS
         au numéro de téléphone du client final, pour le compte de notre client, pour demander
         un avis Google.
@@ -518,7 +520,7 @@ const FR = () => (
         messages SMS sont utilisés exclusivement pour exploiter ce service de messagerie et pour
         fournir des rapports au client partenaire (l'entrepreneur) qui a fourni les données. Les
         données ne sont partagées qu'avec les fournisseurs d'infrastructure nécessaires à la
-        transmission des messages (notamment notre opérateur SMS, Twilio) et avec le client
+        transmission des messages (notamment notre opérateur SMS, Twilio, et notre fournisseur de stockage de données Airtable) et avec le client
         partenaire dont le destinataire est le client final. Nous ne transmettons aucun numéro
         de téléphone ni aucune donnée SMS à un tiers à des fins de marketing, de publicité ou
         d'affiliation. Les numéros de téléphone et l'historique des messages sont conservés
@@ -532,8 +534,9 @@ const FR = () => (
         responsable d'obtenir le consentement préalable du destinataire à recevoir des SMS,
         généralement recueilli verbalement lorsque le destinataire réserve ou planifie un
         service auprès de l'entrepreneur. Amplion traite les numéros de téléphone à titre de
-        sous-traitant en vertu de la Loi 25 du Québec et des lois américaines applicables en
-        matière de protection des consommateurs (TCPA / lignes directrices CTIA). Les
+        sous-traitant en vertu de la Loi 25 du Québec, de la LPRPDE (PIPEDA) et de la Loi
+        canadienne anti-pourriel (LCAP), conformément aux lignes directrices de messagerie
+        de la CTIA. Les
         destinataires ayant des préoccupations concernant le consentement doivent contacter
         l'entrepreneur directement ou contacter le responsable de la protection des
         renseignements personnels d'Amplion à{' '}
@@ -563,7 +566,7 @@ export function PrivacyPolicyPage() {
         </h1>
 
         <p className="text-sm text-gray-500 mb-10">
-          {language === 'fr' ? 'Dernière mise à jour : 25 avril 2026' : 'Last updated: April 25, 2026'}
+          {language === 'fr' ? 'Dernière mise à jour : 30 juin 2026' : 'Last updated: June 30, 2026'}
         </p>
 
         {language === 'en' ? <EN /> : <FR />}

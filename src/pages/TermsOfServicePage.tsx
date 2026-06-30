@@ -189,14 +189,16 @@ const EN = () => (
     <section>
       <h2 className="text-xl font-semibold text-gray-900 mb-3">15. Contact</h2>
       <div className="bg-gray-50 rounded-lg p-4 text-sm mt-3">
-        <p><strong>Amplion</strong></p>
+        <p><strong>Amplion (o/a Solutions Amplion) — Phillip Brochu</strong></p>
+        <p>629 rue Bagot, Québec, QC G1N 2B2, Canada</p>
+        <p>NEQ: 2282232406</p>
         <p>
           Email:{' '}
           <a href="mailto:Pbrochu@amplion.dev" className="text-cyan-600 hover:underline">
             Pbrochu@amplion.dev
           </a>
         </p>
-        <p>Website: amplion.dev | Canada</p>
+        <p>Website: amplion.dev</p>
       </div>
     </section>
 
@@ -320,14 +322,16 @@ const FR = () => (
     <section>
       <h2 className="text-xl font-semibold text-gray-900 mb-3">11. Contact</h2>
       <div className="bg-gray-50 rounded-lg p-4 text-sm mt-3">
-        <p><strong>Amplion</strong></p>
+        <p><strong>Amplion (f/a/s Solutions Amplion) — Phillip Brochu</strong></p>
+        <p>629 rue Bagot, Québec, QC G1N 2B2, Canada</p>
+        <p>NEQ : 2282232406</p>
         <p>
           Courriel :{' '}
           <a href="mailto:Pbrochu@amplion.dev" className="text-cyan-600 hover:underline">
             Pbrochu@amplion.dev
           </a>
         </p>
-        <p>Site web : amplion.dev | Canada</p>
+        <p>Site web : amplion.dev</p>
       </div>
     </section>
 
