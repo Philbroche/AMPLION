@@ -1,1 +1,13 @@
-/* /index.html 200
+# amplion.dev now points to amplion.ca, the main Amplion site (2026-11-10).
+#
+# The three legal pages stay served here: the Twilio Trust Hub profile cites
+# https://amplion.dev/sms-consent as SMS opt-in proof, and may cite the
+# privacy policy and terms too. Do not redirect them without updating Twilio.
+#
+# First matching rule wins. Real files (JS, CSS, images) are still served,
+# because only "/" is forced (!).
+/privacy-policy   /index.html          200
+/terms            /index.html          200
+/sms-consent      /index.html          200
+/                 https://amplion.ca/  301!
+/*                https://amplion.ca/  301
